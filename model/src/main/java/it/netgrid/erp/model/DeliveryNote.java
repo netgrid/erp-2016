@@ -16,13 +16,9 @@ public class DeliveryNote {
 	public static final String PRODUCTS_AMOUNT_NAME = "dlv_products_amount";
 	public static final String CUSTOMER_NAME = "dlv_customer";
 	public static final String SELLER_NAME = "dlv_seller";
+	//public static final String PARENT_CONTENT_FIELD_NAME = "cnt_parent_content";
+
 	
-
-	public static final String LANGUAGE_FIELD_NAME = "cnt_language";
-	public static final String BODY_RAW_FIELD_NAME = "cnt_body_raw";
-
-	public static final String PARENT_CONTENT_FIELD_NAME = "cnt_parent_content";
-
 	@Id
 	@GeneratedValue
 	@Column(name = SEQUENTIAL_NUMBER_NAME)
@@ -39,6 +35,18 @@ public class DeliveryNote {
 
 	@Column(name = SELLER_NAME)
 	private Registry seller;
+	
+	public DeliveryNote() {
+	}
+
+	public DeliveryNote(int sequentialNumber, Date documentDate, int productsAmount, Registry customer,
+			Registry seller) {
+		this.sequentialNumber = sequentialNumber;
+		this.documentDate = documentDate;
+		this.productsAmount = productsAmount;
+		this.customer = customer;
+		this.seller = seller;
+	}
 
 	public int getSequentialNumber() {
 		return sequentialNumber;
