@@ -19,11 +19,9 @@ public class Order {
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
-	private long id;
-	
+	private long id;	
 	@Column(name = ORDERS_FIELD_NAME)
-	private List<OrderItem> orders;
-	
+	private List<OrderItem> orders;	
 	@Column(name = NUMBER_ORDERS_FIELD_NAME)
 	private int numberOrders;
 

@@ -24,23 +24,18 @@ public class OrderItem {
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
-	private long id;
-	
+	private long id;	
 	@OneToMany
 	@JoinColumn(name = CUSTOMER_FIELD_NAME)
-	private Registry customer;
-	
+	private Registry customer;	
 	@OneToMany
 	@JoinColumn(name = PROVIDER_FIELD_NAME)
-	private Registry provider;
-	
+	private Registry provider;	
 	@Column(name = STATE_CODE_FIELD_NAME)
-	private String stateCode;
-	
+	private String stateCode;	
 	@OneToMany
 	@JoinColumn(name = DDT_FIELD_NAME)
-	private DDT ddt;
-	
+	private DDT ddt;	
 	@OneToOne
 	@JoinColumn(name = INVOICE_FIELD_NAME)
 	private Invoice invoice;
