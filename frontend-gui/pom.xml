@@ -39,12 +39,12 @@
 	</repositories>
 
 	<dependencies>
-			<dependency>
+		<dependency>
 			<groupId>it.netgrid</groupId>
 			<artifactId>erp-model</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>it.netgrid</groupId>
 			<artifactId>erp-utils</artifactId>
 			<version>0.0.1</version>

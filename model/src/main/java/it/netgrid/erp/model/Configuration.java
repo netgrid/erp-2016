@@ -1,4 +1,4 @@
-package it.netgrid.erp.utils;
+package it.netgrid.erp.model;
 
 import java.util.Properties;
 
