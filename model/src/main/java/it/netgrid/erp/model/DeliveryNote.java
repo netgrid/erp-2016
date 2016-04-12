@@ -64,7 +64,7 @@ public class DeliveryNote {
 		this.productsAmount = productsAmount;
 	}
 
-	public Anagrafica getCustomer() {
+	public Registry getCustomer() {
 		return customer;
 	}
 
@@ -72,7 +72,7 @@ public class DeliveryNote {
 		this.customer = customer;
 	}
 
-	public Anagrafica getSeller() {
+	public Registry getSeller() {
 		return seller;
 	}
 
