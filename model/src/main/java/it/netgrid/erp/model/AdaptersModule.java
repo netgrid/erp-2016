@@ -1,4 +1,4 @@
-package it.netgrid.erp.model.adapters;
+package it.netgrid.erp.model;
 
 import com.google.inject.AbstractModule;
 
