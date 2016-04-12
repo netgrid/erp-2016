@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+
 @Entity(name = "invoices")
 	public class Invoice {
 		
@@ -106,4 +107,293 @@ import javax.persistence.Id;
 		private String transport;
 		@Column(name = IN_FINAL_AMOUNT_FIELD_NAME)
 		private String finalAmount;
+		
+		/**
+		@OneToOne
+		@JoinColumn(name = CUSTOMER_FIELD_NAME)
+		private Customer customer;
+		*/
+		
+		public Invoice(){}
+		
+		public Invoice(String holder, String address, String zipCode, String city, String state, String phone,
+				String vatNumber, String client, String addressClient, String zipCodeClient, String cityClient,
+				String stateClient, String vatNumClient, String taxCodeClient, String number, Date dateInv, String bank,
+				String currency, String consign, String description, String quantity, String thickness,
+				String dimension, String measureUnit, String onePrice, String discount, String amount,
+				String vatCodeProduct, String transport, String finalAmount) {
+			this.holder = holder;
+			this.address = address;
+			this.zipCode = zipCode;
+			this.city = city;
+			this.state = state;
+			this.phone = phone;
+			this.vatNumber = vatNumber;
+			this.client = client;
+			this.addressClient = addressClient;
+			this.zipCodeClient = zipCodeClient;
+			this.cityClient = cityClient;
+			this.stateClient = stateClient;
+			this.vatNumClient = vatNumClient;
+			this.taxCodeClient = taxCodeClient;
+			this.number = number;
+			this.dateInv = dateInv;
+			this.bank = bank;
+			this.currency = currency;
+			this.consign = consign;
+			this.description = description;
+			this.quantity = quantity;
+			this.thickness = thickness;
+			this.dimension = dimension;
+			this.measureUnit = measureUnit;
+			this.onePrice = onePrice;
+			this.discount = discount;
+			this.amount = amount;
+			this.vatCodeProduct = vatCodeProduct;
+			this.transport = transport;
+			this.finalAmount = finalAmount;
+		}
+
+		public String getHolder() {
+			return holder;
+		}
+
+		public void setHolder(String holder) {
+			this.holder = holder;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getZipCode() {
+			return zipCode;
+		}
+
+		public void setZipCode(String zipCode) {
+			this.zipCode = zipCode;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
+
+		public String getState() {
+			return state;
+		}
+
+		public void setState(String state) {
+			this.state = state;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
+		public String getVatNumber() {
+			return vatNumber;
+		}
+
+		public void setVatNumber(String vatNumber) {
+			this.vatNumber = vatNumber;
+		}
+
+		public String getClient() {
+			return client;
+		}
+
+		public void setClient(String client) {
+			this.client = client;
+		}
+
+		public String getAddressClient() {
+			return addressClient;
+		}
+
+		public void setAddressClient(String addressClient) {
+			this.addressClient = addressClient;
+		}
+
+		public String getZipCodeClient() {
+			return zipCodeClient;
+		}
+
+		public void setZipCodeClient(String zipCodeClient) {
+			this.zipCodeClient = zipCodeClient;
+		}
+
+		public String getCityClient() {
+			return cityClient;
+		}
+
+		public void setCityClient(String cityClient) {
+			this.cityClient = cityClient;
+		}
+
+		public String getStateClient() {
+			return stateClient;
+		}
+
+		public void setStateClient(String stateClient) {
+			this.stateClient = stateClient;
+		}
+
+		public String getVatNumClient() {
+			return vatNumClient;
+		}
+
+		public void setVatNumClient(String vatNumClient) {
+			this.vatNumClient = vatNumClient;
+		}
+
+		public String getTaxCodeClient() {
+			return taxCodeClient;
+		}
+
+		public void setTaxCodeClient(String taxCodeClient) {
+			this.taxCodeClient = taxCodeClient;
+		}
+
+		public String getNumber() {
+			return number;
+		}
+
+		public void setNumber(String number) {
+			this.number = number;
+		}
+
+		public Date getDateInv() {
+			return dateInv;
+		}
+
+		public void setDateInv(Date dateInv) {
+			this.dateInv = dateInv;
+		}
+
+		public String getBank() {
+			return bank;
+		}
+
+		public void setBank(String bank) {
+			this.bank = bank;
+		}
+
+		public String getCurrency() {
+			return currency;
+		}
+
+		public void setCurrency(String currency) {
+			this.currency = currency;
+		}
+
+		public String getConsign() {
+			return consign;
+		}
+
+		public void setConsign(String consign) {
+			this.consign = consign;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public String getQuantity() {
+			return quantity;
+		}
+
+		public void setQuantity(String quantity) {
+			this.quantity = quantity;
+		}
+
+		public String getThickness() {
+			return thickness;
+		}
+
+		public void setThickness(String thickness) {
+			this.thickness = thickness;
+		}
+
+		public String getDimension() {
+			return dimension;
+		}
+
+		public void setDimension(String dimension) {
+			this.dimension = dimension;
+		}
+
+		public String getMeasureUnit() {
+			return measureUnit;
+		}
+
+		public void setMeasureUnit(String measureUnit) {
+			this.measureUnit = measureUnit;
+		}
+
+		public String getOnePrice() {
+			return onePrice;
+		}
+
+		public void setOnePrice(String onePrice) {
+			this.onePrice = onePrice;
+		}
+
+		public String getDiscount() {
+			return discount;
+		}
+
+		public void setDiscount(String discount) {
+			this.discount = discount;
+		}
+
+		public String getAmount() {
+			return amount;
+		}
+
+		public void setAmount(String amount) {
+			this.amount = amount;
+		}
+
+		public String getVatCodeProduct() {
+			return vatCodeProduct;
+		}
+
+		public void setVatCodeProduct(String vatCodeProduct) {
+			this.vatCodeProduct = vatCodeProduct;
+		}
+
+		public String getTransport() {
+			return transport;
+		}
+
+		public void setTransport(String transport) {
+			this.transport = transport;
+		}
+
+		public String getFinalAmount() {
+			return finalAmount;
+		}
+
+		public void setFinalAmount(String finalAmount) {
+			this.finalAmount = finalAmount;
+		}
+
+	
+
 }
