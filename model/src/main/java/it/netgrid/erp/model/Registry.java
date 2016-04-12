@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name="customers")
-public class Customer {
+public class Registry {
 
 	public static final String ID_FIELD_NAME="customer_id";
 	public static final String CUSTOMER_NAME_FIELD_NAME="customer_name";
@@ -64,10 +64,10 @@ public class Customer {
 	
 	
 	
-	public Customer(){};
+	public Registry(){};
 	
 	//costruttre di customer
-	public Customer(long id, 
+	public Registry(long id, 
 					char type, 
 					String name, 
 					String private_surname, 
