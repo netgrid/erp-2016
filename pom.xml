@@ -5,4 +5,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>ERP software 2016</name>
   <description>A basic ERP software</description>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>model</module>
+  	<module>utils</module>
+  	<module>frontend-gui</module>
+  </modules>
 </project>
