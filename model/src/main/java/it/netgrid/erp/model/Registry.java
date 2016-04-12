@@ -16,7 +16,7 @@ public class Registry {
 	public static final String BIRTHDATE_FIELD_NAME = "registry_birthdate";
 	public static final String TYPE_FIELD_NAME = "registry_type";
 	public static final String ADDRESS_ROAD_FIELD_NAME = "registry_address_road";
-	public static final String	MAIL_ADDRESS_FIELD_NAME = "registry_mail_address";
+	public static final String MAIL_ADDRESS_FIELD_NAME = "registry_mail_address";
 	public static final String PHONE_FIELD_NAME = "registry_phone_number";
 	public static final String ADDRESS_NUM_FIELD_NAME = "registry_address_num";
 	public static final String ADDRESS_CITY_FIELD_NAME = "registry_address_city";
