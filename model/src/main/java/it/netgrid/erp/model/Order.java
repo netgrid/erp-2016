@@ -1,66 +1,66 @@
 package it.netgrid.erp.model;
 
-import java.util.Date;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne; 
+ 
 
 @Entity(name="order")
-public class Order {
-	
 
+public class Order {
 	public static final String ID_FIELD_NAME = "ord_id";
-	public static final String CUSTOMER_FIELD_NAME = "ord_customer";
-	public static final String PROVIDER_FIELD_NAME = "ord_provider";
-	public static final String STATE_CODE_FIELD_NAME = "ord_state_code";
-	public static final String DDT_FIELD_NAME = "ord_ddt";
-	public static final String INVOICE_FIELD_NAME = "ord_invoice";
-	public static final String ORDER_ITEM_FIELD_NAME = "ord_order_item";
-	
+	public static final String ORDERS_FIELD_NAME = "ord_orders";
+	public static final String NUMBER_ORDERS_FIELD_NAME = "ord_number_orders";
 	
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
 	private long id;
 	
-	@OneToMany
-	@JoinColumn(name = CUSTOMER_FIELD_NAME)
-	private Registry customer;
+	@Column(name = ORDERS_FIELD_NAME)
+	private List<OrderItem> orders;
 	
-	@OneToMany
-	@JoinColumn(name = PROVIDER_FIELD_NAME)
-	private Registry provider;
-	
-	@Column(name = STATE_CODE_FIELD_NAME)
-	private String stateCode;
-	
-	@OneToMany
-	@JoinColumn(name = DDT_FIELD_NAME)
-	private DDT ddt;
-	
-	@OneToOne
-	@JoinColumn(name = INVOICE_FIELD_NAME)
-	private Invoice invoice;
-	
-	@OneToMany
-	@JoinColumn(name = ORDER_ITEM_FIELD_NAME)
-	private OrderItem orderItem;
-	
+	@Column(name = NUMBER_ORDERS_FIELD_NAME)
+	private int numberOrders;
+
 	public Order() {}
+	
+	public Order(long id, List<OrderItem> orders, int numberOrders) {
+		this.id = id;
+		this.orders = orders;
+		this.numberOrders = numberOrders;
+	}
 
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public List<OrderItem> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderItem> orders) {
+		this.orders = orders;
+	}
+
+	public int getNumberOrders() {
+		return numberOrders;
+	}
+
+	public void setNumberOrders(int numberOrders) {
+		this.numberOrders = numberOrders;
+	}
 
 	
-
-
-
-	
 	
 
-
+	
 }
