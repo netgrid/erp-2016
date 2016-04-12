@@ -112,6 +112,8 @@ import javax.persistence.Id;
 		@OneToOne
 		@JoinColumn(name = CUSTOMER_FIELD_NAME)
 		private Customer customer;
+		@JoinColumn(name = INVOICE_ITEMS_FIELD_NAME)
+		private List<Product> product; 
 		*/
 		
 		public Invoice(){}
