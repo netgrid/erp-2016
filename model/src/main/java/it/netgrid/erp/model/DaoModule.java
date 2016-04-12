@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -25,7 +25,7 @@ public class DaoModule extends AbstractModule {
 	@Provides
 	@Singleton
 	public ConnectionSource getConnection(Configuration configuration) throws SQLException {
-		ConnectionSource retval = new JdbcConnectionSource(configuration.getJdbcConnectionUrl(), configuration.getJdbcUsername(), configuration.getJdbcPassword());
+		JdbcPooledConnectionSource retval = new JdbcPooledConnectionSource(configuration.getJdbcConnectionUrl(), configuration.getJdbcUsername(), configuration.getJdbcPassword());		
 		try {
 			TableUtils.createTableIfNotExists(retval, Object.class);
 		} catch (SQLException e) {
