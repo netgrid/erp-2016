@@ -6,11 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name="registry_group")
-public class RegitryGroup {
-	public static final String ID_FIELD_NAME = "reg_group_id";
-	public static final String NAME_ID_FIELD_NAME = "reg_group_registry_id";
-	public static final String REGISTRY_GROUP_PIVOT_FIELD_NAME = "reg_group_registry_pivot";
-	public static final String HIDDEN_FIELD_NAME = "reg_group_hidden";
+public class RegistryGroup {
+	public static final String ID_FIELD_NAME = "regg_id";
+	public static final String NAME_ID_FIELD_NAME = "rgg_registry_id";
+	public static final String REGISTRY_GROUP_PIVOT_FIELD_NAME = "rgg_registry_pivot";
+	public static final String HIDDEN_FIELD_NAME = "rgg_hidden";
 	
 	
 	@Id
@@ -27,13 +27,13 @@ public class RegitryGroup {
 	@Column(name=HIDDEN_FIELD_NAME)
 	private boolean hidden;
 	
-	public RegitryGroup(){
+	public RegistryGroup(){
 	
 	}
 	
 	
 	
-	public RegitryGroup(long id, long name, long registryGroupPivotId, boolean hidden){
+	public RegistryGroup(long id, long name, long registryGroupPivotId, boolean hidden){
 		this.id=id;
 		this.name=name;
 		this.registryGroupPivotId=registryGroupPivotId;
