@@ -13,7 +13,6 @@ import javax.persistence.OneToOne;
 public class InvoiceItem {
 	
 	public static final String ID_FIELD_NAME = "ini_id";
-	
 	public static final String IN_PRODUCT_DESCRIPTION_FIELD_NAME = "ini_product_description";
 	public static final String PRODUCT_QUANTITY_FIELD_NAME = "ini_product_quantity";
 	public static final String PRODUCT_THICKNESS_FIELD_NAME = "ini_product_thickness";
@@ -48,7 +47,6 @@ public class InvoiceItem {
 	private String amount;
 	@Column(name = VAT_CODE_PRODUCT_FIELD_NAME)
 	private String vatCodeProduct;
-	
 	
 	@OneToOne
 	@JoinColumn(name = INVOICE_FIELD_NAME)

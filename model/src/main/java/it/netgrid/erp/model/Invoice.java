@@ -90,14 +90,11 @@ import com.j256.ormlite.dao.ForeignCollection;
 		@Column(name = IN_FINAL_AMOUNT_FIELD_NAME)
 		private String finalAmount;
 		
-		
 		@OneToOne
 		@JoinColumn(name = REGISTRY_FIELD_NAME)
 		private Registry registry;
 		@JoinColumn(name = IN_ITEM_FIELD_NAME)
 		private ForeignCollection<InvoiceItem> invoiceItem;
-		
-		
 		
 		public Invoice(){}
 		
@@ -305,7 +302,5 @@ import com.j256.ormlite.dao.ForeignCollection;
 		public void setFinalAmount(String finalAmount) {
 			this.finalAmount = finalAmount;
 		}
-
-	
 
 }
