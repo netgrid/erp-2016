@@ -5,9 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
+
 @Entity(name="registry_group")
 public class RegistryGroup {
-	public static final String ID_FIELD_NAME = "regg_id";
+	public static final String ID_FIELD_NAME = "rgg_id";
 	public static final String NAME_ID_FIELD_NAME = "rgg_registry_id";
 	public static final String REGISTRY_GROUP_PIVOT_FIELD_NAME = "rgg_registry_pivot";
 	public static final String HIDDEN_FIELD_NAME = "rgg_hidden";
@@ -19,10 +22,10 @@ public class RegistryGroup {
 	private long id;
 	
 	@Column(name=NAME_ID_FIELD_NAME)
-	private long name;
+	private String name;
 	
-	@Column(name=REGISTRY_GROUP_PIVOT_FIELD_NAME)
-	private long registryGroupPivotId;
+	@ForeignCollectionField
+	private ForeignCollection<RegistryGroupPivot> members; 
 	
 	@Column(name=HIDDEN_FIELD_NAME)
 	private boolean hidden;
@@ -33,10 +36,10 @@ public class RegistryGroup {
 	
 	
 	
-	public RegistryGroup(long id, long name, long registryGroupPivotId, boolean hidden){
+	public RegistryGroup(long id, String name, ForeignCollection<RegistryGroupPivot> members, boolean hidden){
 		this.id=id;
 		this.name=name;
-		this.registryGroupPivotId=registryGroupPivotId;
+		this.members=members;
 		this.hidden=hidden;
 	}
 
@@ -54,25 +57,26 @@ public class RegistryGroup {
 
 
 
-	public long getName() {
+	public String getName() {
 		return name;
 	}
 
 
 
-	public void setName(long name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 
-	public long getRegistryGroupPivotId() {
-		return registryGroupPivotId;
+
+	public ForeignCollection<RegistryGroupPivot> getMembers() {
+		return members;
 	}
 
 
 
-	public void setRegistryGroupPivotId(long registryGroupPivotId) {
-		this.registryGroupPivotId = registryGroupPivotId;
+	public void setMembers(ForeignCollection<RegistryGroupPivot> members) {
+		this.members = members;
 	}
 
 
