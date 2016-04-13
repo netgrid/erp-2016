@@ -1,7 +1,6 @@
 package it.netgrid.erp.model;
 
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,23 +12,23 @@ import javax.persistence.Id;
 
 public class Order {
 	public static final String ID_FIELD_NAME = "ord_id";
-	public static final String ORDERS_FIELD_NAME = "ord_orders";
+	public static final String ORDER_FIELD_NAME = "ord_order";
 	public static final String NUMBER_ORDERS_FIELD_NAME = "ord_number_orders";
 	
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
 	private long id;	
-	@Column(name = ORDERS_FIELD_NAME)
-	private List<OrderItem> orders;	
+	@Column(name = ORDER_FIELD_NAME)
+	private OrderItem order;	
 	@Column(name = NUMBER_ORDERS_FIELD_NAME)
 	private int numberOrders;
 
 	public Order() {}
 	
-	public Order(long id, List<OrderItem> orders, int numberOrders) {
+	public Order(long id, OrderItem order, int numberOrders) {
 		this.id = id;
-		this.orders = orders;
+		this.order = order;
 		this.numberOrders = numberOrders;
 	}
 
@@ -41,12 +40,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public List<OrderItem> getOrders() {
-		return orders;
+	public OrderItem getOrders() {
+		return order;
 	}
 
-	public void setOrders(List<OrderItem> orders) {
-		this.orders = orders;
+	public void setOrders(OrderItem order) {
+		this.order = order;
 	}
 
 	public int getNumberOrders() {
@@ -60,5 +59,5 @@ public class Order {
 	
 	
 
-	
+
 }
