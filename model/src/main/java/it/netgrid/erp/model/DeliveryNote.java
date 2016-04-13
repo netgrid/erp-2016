@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity(name = "DeliveryNote")
@@ -16,9 +17,8 @@ public class DeliveryNote {
 	public static final String PRODUCTS_AMOUNT_NAME = "dlv_products_amount";
 	public static final String CUSTOMER_NAME = "dlv_customer";
 	public static final String SELLER_NAME = "dlv_seller";
-	//public static final String PARENT_CONTENT_FIELD_NAME = "cnt_parent_content";
+	public static final String REGISTRY_FIELD_NAME = "dlv_registry";
 
-	
 	@Id
 	@GeneratedValue
 	@Column(name = SEQUENTIAL_NUMBER_NAME)
@@ -35,7 +35,11 @@ public class DeliveryNote {
 
 	@Column(name = SELLER_NAME)
 	private Registry seller;
-	
+
+	@OneToOne
+	@JoinColumn(name = REGISTRY_FIELD_NAME)
+	private Registry registry;
+
 	public DeliveryNote() {
 	}
 
@@ -87,11 +91,5 @@ public class DeliveryNote {
 	public void setSeller(Registry seller) {
 		this.seller = seller;
 	}
-
-	/*
-	 * @OneToOne
-	 * 
-	 * @JoinColumn(name = PARENT_CONTENT_FIELD_NAME) private Document document;
-	 */
 
 }
