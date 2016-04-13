@@ -22,7 +22,7 @@ public class RegitryGroup {
 	private long name;
 	
 	@Column(name=REGISTRY_GROUP_PIVOT_FIELD_NAME)
-	private long registry_group__pivot_id;
+	private long registryGroupPivotId;
 	
 	@Column(name=HIDDEN_FIELD_NAME)
 	private boolean hidden;
@@ -33,10 +33,10 @@ public class RegitryGroup {
 	
 	
 	
-	public RegitryGroup(long id, long name, long registry_group_pivot_id, boolean hidden){
+	public RegitryGroup(long id, long name, long registryGroupPivotId, boolean hidden){
 		this.id=id;
 		this.name=name;
-		this.registry_group__pivot_id=registry_group_pivot_id;
+		this.registryGroupPivotId=registryGroupPivotId;
 		this.hidden=hidden;
 	}
 
@@ -65,15 +65,14 @@ public class RegitryGroup {
 	}
 
 
-
-	public long getRegistry_group__pivot_id() {
-		return registry_group__pivot_id;
+	public long getRegistryGroupPivotId() {
+		return registryGroupPivotId;
 	}
 
 
 
-	public void setRegistry_group__pivot_id(long registry_group__pivot_id) {
-		this.registry_group__pivot_id = registry_group__pivot_id;
+	public void setRegistryGroupPivotId(long registryGroupPivotId) {
+		this.registryGroupPivotId = registryGroupPivotId;
 	}
 
 

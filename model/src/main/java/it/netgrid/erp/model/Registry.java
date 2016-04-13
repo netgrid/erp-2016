@@ -32,35 +32,35 @@ public class Registry {
 	private String name;
 	
 	@Column(name=SURNAME_FIELD_NAME)
-	private String private_surname;
+	private String privateSurname;
 	
 	@Column(name=BIRTHDATE_FIELD_NAME)
-	private Date private_birthDate;
+	private Date privateBirthDate;
 	
 	@Column(name=TYPE_FIELD_NAME)
 	private char type;
 	
 	@Column(name=ADDRESS_ROAD_FIELD_NAME)
-	private String address_road;
+	private String addressRoad;
 	
 	@Column(name=ADDRESS_NUM_FIELD_NAME)
-	private String address_num;
+	private String addressNum;
 	
 	@Column(name=ADDRESS_CITY_FIELD_NAME)
-	private String address_city;
+	private String addressCity;
 	
 	@Column(name=ADDRESS_ZIP_FIELD_NAME)
-	private String address_zip;
+	private String addressZip;
 	
 	@Column(name=ADDRESS_COUNTRY_FIELD_NAME)
-	private String address_country;
+	private String addressCountry;
 	
 	
 	@Column(name=MAIL_ADDRESS_FIELD_NAME)
-	private String mail_address;
+	private String mailAddress;
 	
 	@Column(name=PHONE_FIELD_NAME)
-	private int phone_number;
+	private int phoneNumber;
 	
 	
 	
@@ -84,15 +84,15 @@ public class Registry {
 		this.id=id;
 		this.type=type;
 		this.name=name;
-		this.private_surname=private_surname;
-		this.private_birthDate=private_birthDate;
-		this.address_road=address_road;
-		this.address_num=address_num;
-		this.address_city=address_city;
-		this.address_zip=address_zip;
-		this.address_country=address_country;
-		this.mail_address=mail_address;
-		this.phone_number=phone_number;
+		this.privateSurname=private_surname;
+		this.privateBirthDate=private_birthDate;
+		this.addressRoad=address_road;
+		this.addressNum=address_num;
+		this.addressCity=address_city;
+		this.addressZip=address_zip;
+		this.addressCountry=address_country;
+		this.mailAddress=mail_address;
+		this.phoneNumber=phone_number;
 	}
 
 	
@@ -113,22 +113,6 @@ public class Registry {
 		this.name = name;
 	}
 
-	public String getPrivate_surname() {
-		return private_surname;
-	}
-
-	public void setPrivate_surname(String private_surname) {
-		this.private_surname = private_surname;
-	}
-
-	public Date getPrivate_birthDate() {
-		return private_birthDate;
-	}
-
-	public void setPrivate_birthDate(Date private_birthDate) {
-		this.private_birthDate = private_birthDate;
-	}
-
 	public char getType() {
 		return type;
 	}
@@ -137,62 +121,79 @@ public class Registry {
 		this.type = type;
 	}
 
-	public String getAddress_road() {
-		return address_road;
+	public String getPrivateSurname() {
+		return privateSurname;
 	}
 
-	public void setAddress_road(String address_road) {
-		this.address_road = address_road;
+	public void setPrivateSurname(String privateSurname) {
+		this.privateSurname = privateSurname;
 	}
 
-	public String getAddress_num() {
-		return address_num;
+	public Date getPrivateBirthDate() {
+		return privateBirthDate;
 	}
 
-	public void setAddress_num(String address_num) {
-		this.address_num = address_num;
+	public void setPrivateBirthDate(Date privateBirthDate) {
+		this.privateBirthDate = privateBirthDate;
 	}
 
-	public String getAddress_city() {
-		return address_city;
+	public String getAddressRoad() {
+		return addressRoad;
 	}
 
-	public void setAddress_city(String address_city) {
-		this.address_city = address_city;
+	public void setAddressRoad(String addressRoad) {
+		this.addressRoad = addressRoad;
 	}
 
-	public String getAddress_zip() {
-		return address_zip;
+	public String getAddressNum() {
+		return addressNum;
 	}
 
-	public void setAddress_zip(String address_zip) {
-		this.address_zip = address_zip;
+	public void setAddressNum(String addressNum) {
+		this.addressNum = addressNum;
 	}
 
-	public String getAddress_country() {
-		return address_country;
+	public String getAddressCity() {
+		return addressCity;
 	}
 
-	public void setAddress_country(String address_country) {
-		this.address_country = address_country;
+	public void setAddressCity(String addressCity) {
+		this.addressCity = addressCity;
 	}
 
-	public String getMail_address() {
-		return mail_address;
+	public String getAddressZip() {
+		return addressZip;
 	}
 
-	public void setMail_address(String mail_address) {
-		this.mail_address = mail_address;
+	public void setAddressZip(String addressZip) {
+		this.addressZip = addressZip;
 	}
 
-	public int getPhone_number() {
-		return phone_number;
+	public String getAddressCountry() {
+		return addressCountry;
 	}
 
-	public void setPhone_number(int phone_number) {
-		this.phone_number = phone_number;
+	public void setAddressCountry(String addressCountry) {
+		this.addressCountry = addressCountry;
 	}
-	
+
+	public String getMailAddress() {
+		return mailAddress;
+	}
+
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
 	
 }
 
