@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-@Entity(name = "DeliveryNotes")
+@Entity(name = "delivery_notes")
 public class DeliveryNote {
 
 	public static final String SEQUENTIAL_NUMBER_NAME = "dlv_sequential_number";
