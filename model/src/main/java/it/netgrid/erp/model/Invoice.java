@@ -33,15 +33,7 @@ import javax.persistence.OneToOne;
 		public static final String BANK_FIELD_NAME = "inv_bank";
 		public static final String CURRENCY_FIELD_NAME = "inv_currency";
 		public static final String CONSIGNMENT_FIELD_NAME= "inv_consignment";
-		public static final String IN_PRODUCT_DESCRIPTION_FIELD_NAME = "inv_product_description";
-		public static final String PRODUCT_QUANTITY_FIELD_NAME = "inv_product_quantity";
-		public static final String PRODUCT_THICKNESS_FIELD_NAME = "inv_product_thickness";
-		public static final String PRODUCT_DIMENSION_FIELD_NAME = "inv_product_dimension";
-		public static final String PRODUCT_MEASURE_UNIT_FIELD_NAME = "inv_product_measure_unit";
-		public static final String ONE_PRODUCT_PRICE_FIELD_NAME = "inv_one_product_price";
-		public static final String PRODUCT_DISCOUNT_FIELD_NAME = "inv_product_discount";
-		public static final String PRODUCT_AMOUNT_FIELD_NAME = "inv_product_amount";
-		public static final String VAT_CODE_PRODUCT_FIELD_NAME = "inv_vat_code_product";
+		public static final String IN_PRODUCT_FIELD_NAME = "inv_product_name";
 		public static final String TRANSPORT_AMOUNT_FIELD_NAME = "inv_transport_amount";
 		public static final String IN_FINAL_AMOUNT_FIELD_NAME = "inv_amount";
 		public static final String REGISTRY_FIELD_NAME = "inv_registry";
@@ -88,24 +80,8 @@ import javax.persistence.OneToOne;
 		private String currency;
 		@Column(name = CONSIGNMENT_FIELD_NAME)
 		private String consign;
-		@Column(name = IN_PRODUCT_DESCRIPTION_FIELD_NAME)
-		private String description;
-		@Column(name = PRODUCT_QUANTITY_FIELD_NAME)
-		private String quantity;
-		@Column(name = PRODUCT_THICKNESS_FIELD_NAME)
-		private String thickness;
-		@Column(name = PRODUCT_DIMENSION_FIELD_NAME)
-		private String dimension;
-		@Column(name = PRODUCT_MEASURE_UNIT_FIELD_NAME)
-		private String measureUnit;
-		@Column(name = ONE_PRODUCT_PRICE_FIELD_NAME)
-		private String onePrice;	
-		@Column(name = PRODUCT_DISCOUNT_FIELD_NAME)
-		private String discount;	
-		@Column(name = PRODUCT_AMOUNT_FIELD_NAME)
-		private String amount;
-		@Column(name = VAT_CODE_PRODUCT_FIELD_NAME)
-		private String vatCodeProduct;
+		@Column(name = IN_PRODUCT_FIELD_NAME )
+		private String nameProduct;
 		@Column(name = TRANSPORT_AMOUNT_FIELD_NAME)
 		private String transport;
 		@Column(name = IN_FINAL_AMOUNT_FIELD_NAME)
@@ -123,9 +99,7 @@ import javax.persistence.OneToOne;
 		public Invoice(String holder, String address, String zipCode, String city, String state, String phone,
 				String vatNumber, String client, String addressClient, String zipCodeClient, String cityClient,
 				String stateClient, String vatNumClient, String taxCodeClient, String number, Date dateInv, String bank,
-				String currency, String consign, String description, String quantity, String thickness,
-				String dimension, String measureUnit, String onePrice, String discount, String amount,
-				String vatCodeProduct, String transport, String finalAmount) {
+				String currency, String consign, String nameProduct, String transport, String finalAmount) {
 			this.holder = holder;
 			this.address = address;
 			this.zipCode = zipCode;
@@ -145,15 +119,7 @@ import javax.persistence.OneToOne;
 			this.bank = bank;
 			this.currency = currency;
 			this.consign = consign;
-			this.description = description;
-			this.quantity = quantity;
-			this.thickness = thickness;
-			this.dimension = dimension;
-			this.measureUnit = measureUnit;
-			this.onePrice = onePrice;
-			this.discount = discount;
-			this.amount = amount;
-			this.vatCodeProduct = vatCodeProduct;
+			this.nameProduct = nameProduct;
 			this.transport = transport;
 			this.finalAmount = finalAmount;
 		}
@@ -310,77 +276,14 @@ import javax.persistence.OneToOne;
 			this.consign = consign;
 		}
 
-		public String getDescription() {
-			return description;
+		public String getNameProduct() {
+			return nameProduct;
 		}
 
-		public void setDescription(String description) {
-			this.description = description;
+		public void setNameProduct(String nameProduct) {
+			this.nameProduct = nameProduct;
 		}
 
-		public String getQuantity() {
-			return quantity;
-		}
-
-		public void setQuantity(String quantity) {
-			this.quantity = quantity;
-		}
-
-		public String getThickness() {
-			return thickness;
-		}
-
-		public void setThickness(String thickness) {
-			this.thickness = thickness;
-		}
-
-		public String getDimension() {
-			return dimension;
-		}
-
-		public void setDimension(String dimension) {
-			this.dimension = dimension;
-		}
-
-		public String getMeasureUnit() {
-			return measureUnit;
-		}
-
-		public void setMeasureUnit(String measureUnit) {
-			this.measureUnit = measureUnit;
-		}
-
-		public String getOnePrice() {
-			return onePrice;
-		}
-
-		public void setOnePrice(String onePrice) {
-			this.onePrice = onePrice;
-		}
-
-		public String getDiscount() {
-			return discount;
-		}
-
-		public void setDiscount(String discount) {
-			this.discount = discount;
-		}
-
-		public String getAmount() {
-			return amount;
-		}
-
-		public void setAmount(String amount) {
-			this.amount = amount;
-		}
-
-		public String getVatCodeProduct() {
-			return vatCodeProduct;
-		}
-
-		public void setVatCodeProduct(String vatCodeProduct) {
-			this.vatCodeProduct = vatCodeProduct;
-		}
 
 		public String getTransport() {
 			return transport;
