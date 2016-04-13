@@ -52,7 +52,8 @@ public class InvoiceItem {
 	@JoinColumn(name = INVOICE_FIELD_NAME)
 	private Invoice invoice;
 	@JoinColumn(name = PRODUCT_FIELD_NAME)
-	private List<Product> product;
+	private String product;
+	//private List<Product> product;
 	
 	public InvoiceItem(){}
 
