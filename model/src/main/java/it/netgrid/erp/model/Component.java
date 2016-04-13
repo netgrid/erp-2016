@@ -1,19 +1,37 @@
 package it.netgrid.erp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity(name="component")
 public class Component {
-	private int idComponent = -1;
-	private String Compnent = "";
+	
+	public static final String COMPONENT_NAME="com_component";
+	public static final String ID_COMPONENT_NAME="com_id_Component";
+	
+	@Id
+	@GeneratedValue
+	@Column(name=ID_COMPONENT_NAME)
+	private long idComponent;
+	
+	@Column(name=COMPONENT_NAME)
+	private String component;
+	
+	
+	
 	
 	public Component(){
 		
 	}
 	
-	public Component(int id,String nome){
+	public Component(long id,String nome){
 		this.idComponent = id;
-		this.Compnent = nome;
+		this.component = nome;
 	}
 
-	public int getIdComponent() {
+	public long getIdComponent() {
 		return idComponent;
 	}
 
@@ -22,11 +40,11 @@ public class Component {
 	}
 
 	public String getCompnent() {
-		return Compnent;
+		return component;
 	}
 
 	public void setCompnent(String compnent) {
-		Compnent = compnent;
+		component = compnent;
 	}
 	
 }
