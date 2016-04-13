@@ -5,20 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name = "invoiceitems")
+@Entity(name = "invoice_items")
 public class InvoiceItem {
 	
-	public static final String ID_FIELD_NAME = "inv_id";
-	public static final String IN_PRODUCT_FIELD_NAME = "inv_product_name";
-	public static final String IN_PRODUCT_DESCRIPTION_FIELD_NAME = "inv_product_description";
-	public static final String PRODUCT_QUANTITY_FIELD_NAME = "inv_invoice_product_quantity";
-	public static final String PRODUCT_THICKNESS_FIELD_NAME = "inv_invoice_product_thickness";
-	public static final String PRODUCT_DIMENSION_FIELD_NAME = "inv_invoice_product_dimension";
-	public static final String PRODUCT_MEASURE_UNIT_FIELD_NAME = "inv_invoice_product_measure_unit";
-	public static final String ONE_PRODUCT_PRICE_FIELD_NAME = "inv_invoice_one_product_price";
-	public static final String PRODUCT_DISCOUNT_FIELD_NAME = "inv_invoice_product_discount";
-	public static final String PRODUCT_AMOUNT_FIELD_NAME = "inv_invoice_product_amount";
-	public static final String VAT_CODE_PRODUCT_FIELD_NAME = "inv_invoice_vat_code_product";
+	public static final String ID_FIELD_NAME = "ini_id";
+	public static final String IN_PRODUCT_FIELD_NAME = "ini_product_name";
+	public static final String IN_PRODUCT_DESCRIPTION_FIELD_NAME = "ini_product_description";
+	public static final String PRODUCT_QUANTITY_FIELD_NAME = "ini_product_quantity";
+	public static final String PRODUCT_THICKNESS_FIELD_NAME = "ini_product_thickness";
+	public static final String PRODUCT_DIMENSION_FIELD_NAME = "ini_product_dimension";
+	public static final String PRODUCT_MEASURE_UNIT_FIELD_NAME = "ini_product_measure_unit";
+	public static final String ONE_PRODUCT_PRICE_FIELD_NAME = "ini_one_product_price";
+	public static final String PRODUCT_DISCOUNT_FIELD_NAME = "ini_product_discount";
+	public static final String PRODUCT_AMOUNT_FIELD_NAME = "ini_product_amount";
+	public static final String VAT_CODE_PRODUCT_FIELD_NAME = "ini_vat_code_product";
 	
 	@Id
 	@GeneratedValue	
