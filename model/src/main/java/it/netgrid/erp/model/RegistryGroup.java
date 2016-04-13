@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Entity(name="registry_group")
 public class RegistryGroup {
-	public static final String ID_FIELD_NAME = "regg_id";
+	public static final String ID_FIELD_NAME = "rgg_id";
 	public static final String NAME_ID_FIELD_NAME = "rgg_registry_id";
 	public static final String REGISTRY_GROUP_PIVOT_FIELD_NAME = "rgg_registry_pivot";
 	public static final String HIDDEN_FIELD_NAME = "rgg_hidden";
