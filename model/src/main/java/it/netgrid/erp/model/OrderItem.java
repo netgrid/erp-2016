@@ -1,6 +1,5 @@
 package it.netgrid.erp.model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,14 +34,15 @@ public class OrderItem {
 	private String stateCode;	
 	@OneToMany
 	@JoinColumn(name = DDT_FIELD_NAME)
-	private DDT ddt;	
+	private DeliveryNote ddt;	
 	@OneToOne
 	@JoinColumn(name = INVOICE_FIELD_NAME)
 	private Invoice invoice;
 	
 	public OrderItem() {}
 
-	public OrderItem(long id, Registry customer, Registry provider, String stateCode, DDT ddt, Invoice invoice) {
+	public OrderItem(long id, Registry customer, Registry provider, String stateCode, DeliveryNote ddt,
+			Invoice invoice) {
 		this.id = id;
 		this.customer = customer;
 		this.provider = provider;
@@ -83,11 +83,11 @@ public class OrderItem {
 		this.stateCode = stateCode;
 	}
 
-	public DDT getDdt() {
+	public DeliveryNote getDdt() {
 		return ddt;
 	}
 
-	public void setDdt(DDT ddt) {
+	public void setDdt(DeliveryNote ddt) {
 		this.ddt = ddt;
 	}
 
@@ -98,6 +98,7 @@ public class OrderItem {
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
+
 	
 	
 	
