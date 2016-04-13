@@ -1,15 +1,19 @@
 package it.netgrid.erp.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity(name = "invoice_items")
 public class InvoiceItem {
 	
 	public static final String ID_FIELD_NAME = "ini_id";
-	public static final String IN_PRODUCT_FIELD_NAME = "ini_product_name";
+	
 	public static final String IN_PRODUCT_DESCRIPTION_FIELD_NAME = "ini_product_description";
 	public static final String PRODUCT_QUANTITY_FIELD_NAME = "ini_product_quantity";
 	public static final String PRODUCT_THICKNESS_FIELD_NAME = "ini_product_thickness";
@@ -19,14 +23,13 @@ public class InvoiceItem {
 	public static final String PRODUCT_DISCOUNT_FIELD_NAME = "ini_product_discount";
 	public static final String PRODUCT_AMOUNT_FIELD_NAME = "ini_product_amount";
 	public static final String VAT_CODE_PRODUCT_FIELD_NAME = "ini_vat_code_product";
+	public static final String INVOICE_FIELD_NAME = "ini_invoice";
+	public static final String PRODUCT_FIELD_NAME = "ini_product_name";
 	
 	@Id
 	@GeneratedValue	
 	@Column(name = ID_FIELD_NAME)
 	private long id; 
-	@Column(name = IN_PRODUCT_FIELD_NAME)
-	private String product; 
-	//List<Product>
 	@Column(name = IN_PRODUCT_DESCRIPTION_FIELD_NAME)
 	private String description;
 	@Column(name = PRODUCT_QUANTITY_FIELD_NAME)
@@ -46,11 +49,18 @@ public class InvoiceItem {
 	@Column(name = VAT_CODE_PRODUCT_FIELD_NAME)
 	private String vatCodeProduct;
 	
+	
+	@OneToOne
+	@JoinColumn(name = INVOICE_FIELD_NAME)
+	private Invoice invoice;
+	@JoinColumn(name = PRODUCT_FIELD_NAME)
+	private List<Product> product;
+	
 	public InvoiceItem(){}
 
-	public InvoiceItem(String product, String description, String quantity, String thickness, String dimension,
+	public InvoiceItem(String description, String quantity, String thickness, String dimension,
 			String measureUnit, String onePrice, String discount, String amount, String vatCodeProduct) {
-		this.product = product;
+		
 		this.description = description;
 		this.quantity = quantity;
 		this.thickness = thickness;
@@ -60,14 +70,6 @@ public class InvoiceItem {
 		this.discount = discount;
 		this.amount = amount;
 		this.vatCodeProduct = vatCodeProduct;
-	}
-
-	public String getProduct() {
-		return product;
-	}
-
-	public void setProduct(String product) {
-		this.product = product;
 	}
 
 	public String getDescription() {

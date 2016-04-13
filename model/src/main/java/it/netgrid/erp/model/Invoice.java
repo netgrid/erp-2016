@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.j256.ormlite.dao.ForeignCollection;
+
 
 @Entity(name = "invoices")
 	public class Invoice {
@@ -37,6 +39,7 @@ import javax.persistence.OneToOne;
 		public static final String TRANSPORT_AMOUNT_FIELD_NAME = "inv_transport_amount";
 		public static final String IN_FINAL_AMOUNT_FIELD_NAME = "inv_amount";
 		public static final String REGISTRY_FIELD_NAME = "inv_registry";
+		public static final String IN_ITEM_FIELD_NAME = "inv_item";
 		
 		@Id
 		@GeneratedValue	
@@ -91,6 +94,8 @@ import javax.persistence.OneToOne;
 		@OneToOne
 		@JoinColumn(name = REGISTRY_FIELD_NAME)
 		private Registry registry;
+		@JoinColumn(name = IN_ITEM_FIELD_NAME)
+		private ForeignCollection<InvoiceItem> invoiceItem;
 		
 		
 		
