@@ -7,9 +7,6 @@
         <dependent-module archiveName="erp-model-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/model/model">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="erp-utils-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/utils/utils">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="java-output-path" value="/frontend-gui/target/classes"/>
         <property name="context-root" value="frontend"/>
         <property name="component.exclusion.patterns" value="WEB-INF/shiro.ini,**/.gitignore"/>
