@@ -10,18 +10,18 @@ import javax.persistence.Id;
 @Entity(name="registries")
 public class Registry {
 
-	public static final String ID_FIELD_NAME="registry_id";
-	public static final String REGISTRY_NAME_FIELD_NAME="registry_name";
-	public static final String SURNAME_FIELD_NAME="registry_surname";
-	public static final String BIRTHDATE_FIELD_NAME = "registry_birthdate";
-	public static final String TYPE_FIELD_NAME = "registry_type";
-	public static final String ADDRESS_ROAD_FIELD_NAME = "registry_address_road";
-	public static final String MAIL_ADDRESS_FIELD_NAME = "registry_mail_address";
-	public static final String PHONE_FIELD_NAME = "registry_phone_number";
-	public static final String ADDRESS_NUM_FIELD_NAME = "registry_address_num";
-	public static final String ADDRESS_CITY_FIELD_NAME = "registry_address_city";
-	public static final String ADDRESS_ZIP_FIELD_NAME = "registry_address_zip";
-	public static final String ADDRESS_COUNTRY_FIELD_NAME = "registry_address_country";
+	public static final String ID_FIELD_NAME="reg_id";
+	public static final String REGISTRY_NAME_FIELD_NAME="reg_name";
+	public static final String SURNAME_FIELD_NAME="reg_surname";
+	public static final String BIRTHDATE_FIELD_NAME = "reg_birthdate";
+	public static final String TYPE_FIELD_NAME = "reg_type";
+	public static final String ADDRESS_ROAD_FIELD_NAME = "reg_address_road";
+	public static final String MAIL_ADDRESS_FIELD_NAME = "reg_mail_address";
+	public static final String PHONE_FIELD_NAME = "reg_phone_number";
+	public static final String ADDRESS_NUM_FIELD_NAME = "reg_address_num";
+	public static final String ADDRESS_CITY_FIELD_NAME = "reg_address_city";
+	public static final String ADDRESS_ZIP_FIELD_NAME = "reg_address_zip";
+	public static final String ADDRESS_COUNTRY_FIELD_NAME = "reg_address_country";
 	
 	@Id
 	@GeneratedValue
