@@ -1,19 +1,16 @@
 package it.netgrid.erp.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 public class Bom {
 	
 	private int idProduct = -1;
 	private int idComponent = -1;
-	private String nomeComponente = " ";
+	private String componentName = " ";
 	
 
 	
-	public Bom() throws SQLException{
+	public Bom(){
 		
 	}
 
@@ -34,11 +31,11 @@ public class Bom {
 	}
 
 	public String getNomeComponente() {
-		return nomeComponente;
+		return componentName;
 	}
 
-	public void setNomeComponente(String nomeComponente) {
-		this.nomeComponente = nomeComponente;
+	public void setNomeComponente(String componentName) {
+		this.componentName = componentName;
 	}
 	
 	
