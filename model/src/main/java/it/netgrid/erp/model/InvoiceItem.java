@@ -26,7 +26,7 @@ public class InvoiceItem {
 	@Id
 	@GeneratedValue	
 	@Column(name = ID_FIELD_NAME)
-	private long id; 
+	private Long id; 
 	@Column(name = IN_PRODUCT_DESCRIPTION_FIELD_NAME)
 	private String description;
 	@Column(name = PRODUCT_QUANTITY_FIELD_NAME)

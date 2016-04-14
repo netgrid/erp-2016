@@ -44,7 +44,7 @@ import com.j256.ormlite.dao.ForeignCollection;
 		@Id
 		@GeneratedValue	
 		@Column(name = ID_FIELD_NAME)
-		private long id; 
+		private Long id; 
 		@Column(name = IN_HOLDER_FIELD_NAME)
 		private String holder;
 		@Column(name = ADDRESS_FIELD_NAME)
