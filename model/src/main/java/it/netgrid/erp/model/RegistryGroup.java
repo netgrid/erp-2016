@@ -19,7 +19,7 @@ public class RegistryGroup {
 	@Id
 	@GeneratedValue
 	@Column(name=ID_FIELD_NAME)
-	private long id;
+	private Long id;
 	
 	@Column(name=NAME_ID_FIELD_NAME)
 	private String name;

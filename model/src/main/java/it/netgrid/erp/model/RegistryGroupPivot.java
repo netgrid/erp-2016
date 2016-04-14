@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity(name="registry_group_pivots")
 public class RegistryGroupPivot {
@@ -15,12 +17,14 @@ public class RegistryGroupPivot {
 	@Id
 	@GeneratedValue
 	@Column(name=ID_FIELD_NAME)
-	private long id;
-	
-	@Column(name=REGISTRY_FIELD_NAME)
+	private Long id;
+
+	@OneToOne
+	@JoinColumn(name=REGISTRY_FIELD_NAME)
 	private Registry registry;
 	
-	@Column(name=REGISTRY_GROUP_FIELD_NAME)
+	@OneToOne
+	@JoinColumn(name=REGISTRY_GROUP_FIELD_NAME)
 	private RegistryGroup registryGroup;
 	
 	
@@ -57,9 +61,4 @@ public class RegistryGroupPivot {
 		this.registryGroup = registryGroup;
 	}
 
-	
-	
-	
-	
-	
 }
