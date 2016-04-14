@@ -34,6 +34,11 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
 			TableUtils.createTable(retval, Bom.class);
 			TableUtils.createTable(retval, Component.class);
+			TableUtils.createTableIfNotExists(retval, Invoice.class);
+			TableUtils.createTableIfNotExists(retval, InvoiceItem.class);
+			TableUtils.createTableIfNotExists(retval, Order.class);
+			TableUtils.createTableIfNotExists(retval, OrderItem.class);
+			TableUtils.createTable(retval, DeliveryNote.class);
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
@@ -53,6 +58,9 @@ public class DaoModule extends AbstractModule {
 		return DaoManager.createDao(connection, Component.class);
 	}
 	
+	public Dao<DeliveryNote, Long> getDeliveryNoteDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, DeliveryNote.class);
+	}	
 	
 	@Provides
 	@Singleton
@@ -71,4 +79,28 @@ public class DaoModule extends AbstractModule {
 	public Dao<RegistryGroupPivot, Long> getRegistryGroupPivotDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, RegistryGroupPivot.class);
 	}
+	
+	@Provides
+	@Singleton
+	public Dao<Invoice, Long> getInvoiceDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Invoice.class);
+	}
+	@Provides
+	@Singleton
+	public Dao<InvoiceItem, Long> getInvoiceItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, InvoiceItem.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<Order, Long> OrderDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Order.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<OrderItem, Long> OrderItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, OrderItem.class);
+	}
+
 }
