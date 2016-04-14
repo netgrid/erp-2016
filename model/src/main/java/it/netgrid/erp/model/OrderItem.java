@@ -1,61 +1,63 @@
 package it.netgrid.erp.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
-@Entity(name="order_item")
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
+
+@Entity(name = "order_item")
 public class OrderItem {
-	
+
 	public static final String ID_FIELD_NAME = "oit_id";
-	public static final String CUSTOMER_FIELD_NAME = "oit_customer";
-	public static final String PROVIDER_FIELD_NAME = "oit_provider";
+	public static final String CUSTOMER_FIELD_NAME = "oit_customer_id";
+	public static final String PROVIDER_FIELD_NAME = "oit_provider_id";
 	public static final String STATE_CODE_FIELD_NAME = "oit_state_code";
-	public static final String DDT_FIELD_NAME = "oit_ddt";
-	public static final String INVOICE_FIELD_NAME = "oit_invoice";
-	
-	
+	public static final String INVOICE_FIELD_NAME = "oit_invoice_id";
+
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
-	private long id;	
-	@OneToMany
+	private Long id;
+
+	@ManyToOne
 	@JoinColumn(name = CUSTOMER_FIELD_NAME)
-	private Registry customer;	
-	@OneToMany
+	private Registry customer;
+
+	@ManyToOne
 	@JoinColumn(name = PROVIDER_FIELD_NAME)
-	private Registry provider;	
+	private Registry provider;
+
 	@Column(name = STATE_CODE_FIELD_NAME)
-	private String stateCode;	
-	@OneToMany
-	@JoinColumn(name = DDT_FIELD_NAME)
-	private DeliveryNote ddt;	
-	@OneToOne
+	private String stateCode;
+
+	@ForeignCollectionField
+	private ForeignCollection<DeliveryNote> deliveryNotes;
+
+	@ManyToOne
 	@JoinColumn(name = INVOICE_FIELD_NAME)
 	private Invoice invoice;
-	
-	public OrderItem() {}
 
-	public OrderItem(long id, Registry customer, Registry provider, String stateCode, DeliveryNote ddt,
-			Invoice invoice) {
+	public OrderItem() {
+	}
+
+	public OrderItem(Long id, Registry customer, Registry provider, String stateCode, Invoice invoice) {
 		this.id = id;
 		this.customer = customer;
 		this.provider = provider;
 		this.stateCode = stateCode;
-		this.ddt = ddt;
 		this.invoice = invoice;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -83,14 +85,6 @@ public class OrderItem {
 		this.stateCode = stateCode;
 	}
 
-	public DeliveryNote getDdt() {
-		return ddt;
-	}
-
-	public void setDdt(DeliveryNote ddt) {
-		this.ddt = ddt;
-	}
-
 	public Invoice getInvoice() {
 		return invoice;
 	}
@@ -99,8 +93,12 @@ public class OrderItem {
 		this.invoice = invoice;
 	}
 
-	
-	
-	
-	
+	public ForeignCollection<DeliveryNote> getDeliveryNotes() {
+		return deliveryNotes;
+	}
+
+	public void setDeliveryNotes(ForeignCollection<DeliveryNote> deliveryNotes) {
+		this.deliveryNotes = deliveryNotes;
+	}
+
 }

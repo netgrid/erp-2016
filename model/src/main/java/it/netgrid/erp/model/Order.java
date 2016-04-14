@@ -6,10 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
  
 
 @Entity(name="order")
@@ -22,30 +21,21 @@ public class Order {
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
-	private long id;	
+	private Long id;	
 	
-	@OneToMany
-	@JoinColumn(name = ORDER_FIELD_NAME)
+	@ForeignCollectionField
 	private ForeignCollection<OrderItem> order;	
 	
 	@Column(name = NUMBER_ORDERS_FIELD_NAME)
-	private int numberOrders;
+	private Integer numberOrders;
 
 	public Order() {}
 
-	public Order(long id, ForeignCollection<OrderItem> order, int numberOrders) {
+	public Order(Long id, ForeignCollection<OrderItem> order, Integer numberOrders) {
 		super();
 		this.id = id;
 		this.order = order;
 		this.numberOrders = numberOrders;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public ForeignCollection<OrderItem> getOrder() {
@@ -56,18 +46,20 @@ public class Order {
 		this.order = order;
 	}
 
-	public int getNumberOrders() {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getNumberOrders() {
 		return numberOrders;
 	}
 
-	public void setNumberOrders(int numberOrders) {
+	public void setNumberOrders(Integer numberOrders) {
 		this.numberOrders = numberOrders;
 	}
-	
-
-
-	
-	
-
 
 }
