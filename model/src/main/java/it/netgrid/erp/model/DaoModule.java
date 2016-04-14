@@ -32,6 +32,8 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, Registry.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
+			TableUtils.createTableIfNotExists(retval, Invoice.class);
+			TableUtils.createTableIfNotExists(retval, InvoiceItem.class);
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
