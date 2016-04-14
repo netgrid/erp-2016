@@ -58,4 +58,15 @@ public class DaoModule extends AbstractModule {
 	public Dao<RegistryGroupPivot, Long> getRegistryGroupPivotDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, RegistryGroupPivot.class);
 	}
+	
+	@Provides
+	@Singleton
+	public Dao<Invoice, Long> getInvoiceDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Invoice.class);
+	}
+	@Provides
+	@Singleton
+	public Dao<InvoiceItem, Long> getInvoiceItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, InvoiceItem.class);
+	}
 }
