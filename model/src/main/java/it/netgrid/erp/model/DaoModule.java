@@ -32,12 +32,19 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, Registry.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
+			TableUtils.createTable(retval, DeliveryNote.class);
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
 		}
 		return retval;
 	}
+	
+	@Provides
+	@Singleton
+	public Dao<DeliveryNote, Long> getDeliveryNoteDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, DeliveryNote.class);
+	}	
 	
 	@Provides
 	@Singleton
