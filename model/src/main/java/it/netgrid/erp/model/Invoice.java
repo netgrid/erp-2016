@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
 
 
 @Entity(name = "invoices")
@@ -93,7 +94,8 @@ import com.j256.ormlite.dao.ForeignCollection;
 		@OneToOne
 		@JoinColumn(name = REGISTRY_FIELD_NAME)
 		private Registry registry;
-		@JoinColumn(name = IN_ITEM_FIELD_NAME)
+		
+		@ForeignCollectionField
 		private ForeignCollection<InvoiceItem> invoiceItem;
 		
 		public Invoice(){}
