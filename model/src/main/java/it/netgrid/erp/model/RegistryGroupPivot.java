@@ -4,33 +4,37 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity(name="registry_group_pivots")
 public class RegistryGroupPivot {
 	public static final String ID_FIELD_NAME = "rgp_id";
-	public static final String REGISTRY_ID_FIELD_NAME = "rgp_registry_id";
-	public static final String REGISTRY_GROUP_ID_FIELD_NAME = "rgp_registry_group_id";
+	public static final String REGISTRY_FIELD_NAME = "rgp_registry";
+	public static final String REGISTRY_GROUP_FIELD_NAME = "rgp_registry_group";
 	
 	
 	@Id
 	@GeneratedValue
 	@Column(name=ID_FIELD_NAME)
-	private long id;
+	private Long id;
+
+	@OneToOne
+	@JoinColumn(name=REGISTRY_FIELD_NAME)
+	private Registry registry;
 	
-	@Column(name=REGISTRY_ID_FIELD_NAME)
-	private long registry_id;
-	
-	@Column(name=REGISTRY_GROUP_ID_FIELD_NAME)
-	private long registry_group_id;
+	@OneToOne
+	@JoinColumn(name=REGISTRY_GROUP_FIELD_NAME)
+	private RegistryGroup registryGroup;
 	
 	
 	
 	public RegistryGroupPivot(){};
 	
-	public RegistryGroupPivot(long id, long registry_id, long registry_group_id){
+	public RegistryGroupPivot(long id, Registry registry, RegistryGroup registryGroup){
 		this.id=id;
-		this.registry_id=registry_id;
-		this.registry_group_id=registry_group_id;
+		this.registry=registry;
+		this.registryGroup=registryGroup;
 	}
 
 	public long getId() {
@@ -41,23 +45,20 @@ public class RegistryGroupPivot {
 		this.id = id;
 	}
 
-	public long getRegistry_id() {
-		return registry_id;
+	public Registry getRegistry() {
+		return registry;
 	}
 
-	public void setRegistry_id(long registry_id) {
-		this.registry_id = registry_id;
+	public void setRegistry(Registry registry) {
+		this.registry = registry;
 	}
 
-	public long getRegistry_group_id() {
-		return registry_group_id;
+	public RegistryGroup getRegistryGroup() {
+		return registryGroup;
 	}
 
-	public void setRegistry_group_id(long registry_group_id) {
-		this.registry_group_id = registry_group_id;
-	};
-	
-	
-	
-	
+	public void setRegistryGroup(RegistryGroup registryGroup) {
+		this.registryGroup = registryGroup;
+	}
+
 }

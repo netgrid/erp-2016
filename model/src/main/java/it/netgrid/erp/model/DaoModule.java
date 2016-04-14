@@ -30,8 +30,12 @@ public class DaoModule extends AbstractModule {
 		JdbcPooledConnectionSource retval = new JdbcPooledConnectionSource(configuration.getJdbcConnectionUrl(), configuration.getJdbcUsername(), configuration.getJdbcPassword());		
 		try {
 			TableUtils.createTableIfNotExists(retval, Registry.class);
-			TableUtils.createTableIfNotExists(retval, RegitryGroup.class);
+			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
+			
+			TableUtils.createTableIfNotExists(retval, Order.class);
+			TableUtils.createTableIfNotExists(retval, OrderItem.class);
+			
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
@@ -47,8 +51,8 @@ public class DaoModule extends AbstractModule {
 	
 	@Provides
 	@Singleton
-	public Dao<RegitryGroup, Long> getRegistryGroupDao(ConnectionSource connection) throws SQLException {
-		return DaoManager.createDao(connection, RegitryGroup.class);
+	public Dao<RegistryGroup, Long> getRegistryGroupDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, RegistryGroup.class);
 	}
 	
 	@Provides
@@ -56,4 +60,18 @@ public class DaoModule extends AbstractModule {
 	public Dao<RegistryGroupPivot, Long> getRegistryGroupPivotDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, RegistryGroupPivot.class);
 	}
+	
+	
+	@Provides
+	@Singleton
+	public Dao<Order, Long> OrderDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Order.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<OrderItem, Long> OrderItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, OrderItem.class);
+	}
+
 }

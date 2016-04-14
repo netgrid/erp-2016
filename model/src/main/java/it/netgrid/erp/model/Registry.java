@@ -26,7 +26,7 @@ public class Registry {
 	@Id
 	@GeneratedValue
 	@Column(name=ID_FIELD_NAME)
-	private long id;
+	private Long id;
 	
 	@Column(name=REGISTRY_NAME_FIELD_NAME)
 	private String name;
@@ -60,7 +60,7 @@ public class Registry {
 	private String mailAddress;
 	
 	@Column(name=PHONE_FIELD_NAME)
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	
 	
@@ -78,7 +78,7 @@ public class Registry {
 					String address_zip,
 					String address_country,
 					String mail_address,
-					int phone_number)
+					String phone_number)
 	{
 		
 		this.id=id;
@@ -185,11 +185,11 @@ public class Registry {
 		this.mailAddress = mailAddress;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
