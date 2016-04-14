@@ -3,6 +3,7 @@ package it.netgrid.erp.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity(name="bom")
@@ -17,7 +18,7 @@ public class Bom {
 	private long idProduct;
 	
 	@Id
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name=ID_COMPONENT_NAME)
 	private long idComponent;
 	
