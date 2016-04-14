@@ -23,7 +23,7 @@ public class OrderItem {
 	@Id
 	@GeneratedValue
 	@Column(name = ID_FIELD_NAME)
-	private long id;	
+	private Long id;	
 	@OneToMany
 	@JoinColumn(name = CUSTOMER_FIELD_NAME)
 	private Registry customer;	
@@ -41,7 +41,7 @@ public class OrderItem {
 	
 	public OrderItem() {}
 
-	public OrderItem(long id, Registry customer, Registry provider, String stateCode, DeliveryNote ddt,
+	public OrderItem(Long id, Registry customer, Registry provider, String stateCode, DeliveryNote ddt,
 			Invoice invoice) {
 		this.id = id;
 		this.customer = customer;
@@ -51,11 +51,11 @@ public class OrderItem {
 		this.invoice = invoice;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
