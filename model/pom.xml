@@ -13,6 +13,8 @@
 	<properties>
 		<version.java>1.8</version.java>
 		<version.ormlite>4.48</version.ormlite>
+		<version.guice>3.0</version.guice>
+		<version.junit>4.12</version.junit>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -20,6 +22,25 @@
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
 			<scope>provided</scope>
+		</dependency>
+		
+		<!-- Logging API + implementation: -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>1.7.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Object persistency -->
@@ -47,6 +68,37 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.35</version>
+		</dependency>
+		
+		<!-- DI -->
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-persist</artifactId>
+			<version>${version.guice}</version>
+		</dependency>
+		
+		<!-- Testing dependencies: -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.codearte.jfairy</groupId>
+			<artifactId>jfairy</artifactId>
+			<version>0.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guiceberry</groupId>
+			<artifactId>guiceberry</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.3.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
