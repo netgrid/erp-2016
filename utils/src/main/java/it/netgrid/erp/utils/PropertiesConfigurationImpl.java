@@ -22,7 +22,7 @@ public class PropertiesConfigurationImpl implements Configuration {
 	private static final String KEY_JDBC_USERNAME = "jdbcUsername";
 	private static final String KEY_JDBC_PASSWORD = "jdbcPassword";
 	
-	private static final String DEFAULT_JDBC_CONNECITON_URL = "jdbc:mysql://localhost/nrp_persistence?zeroDateTimeBehavior=convertToNull";
+	private static final String DEFAULT_JDBC_CONNECITON_URL = "jdbc:mysql://localhost/erp2016?zeroDateTimeBehavior=convertToNull";
 	private static final String DEFAULT_JDBC_USERNAME = "root";
 	private static final String DEFAULT_JDBC_PASSWORD = "root";
 	
