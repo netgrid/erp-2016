@@ -8,39 +8,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "users")
-public class Users {
-	public static final String USER_NAME_FIELD_NAME = "user_username";
-	public static final String PASSWORD_FIELD_NAME = "user_password";
-	public static final String ROLE_FIELD_NAME = "user_role";
-	public static final String DATE_ADMISSION_FIELD_NAME = "user_date_admission";
-	public static final String TAX_CODE_FIELD_NAME = "user_tax_code";
-	public static final String SREET_FIELD_NAME = "user_street";
-	public static final String HOUSE_NUMBER_FIELD_NAME = "user_hause_number";
-	public static final String CITY_FIELD_NAME = "user_city";
-	public static final String DATE_OF_BIRTH_FIELD_NAME = "user_date_of_birth";
+public class User {
+	public static final String ID_FIELD_NAME = "usr_id";
+	public static final String USER_NAME_FIELD_NAME = "usr_username";
+	public static final String PASSWORD_FIELD_NAME = "usr_password";
+	public static final String ROLE_FIELD_NAME = "usr_role";
+	public static final String DATE_ADMISSION_FIELD_NAME = "usr_date_admission";
+	public static final String TAX_CODE_FIELD_NAME = "usr_tax_code";
+	public static final String STREET_FIELD_NAME = "usr_street";
+	public static final String HOUSE_NUMBER_FIELD_NAME = "usr_hause_number";
+	public static final String CITY_FIELD_NAME = "usr_city";
+	public static final String DATE_OF_BIRTH_FIELD_NAME = "usr_date_of_birth";
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "USER_NAME_FIELD_NAME")
+	@Column(name = ID_FIELD_NAME)
+	private Long id;
+	
+	@Column(name = USER_NAME_FIELD_NAME, unique=true)
 	private String username;
-	@Column(name = "PASSWORD_FIELD_NAME")
+	
+	@Column(name = PASSWORD_FIELD_NAME)
 	private String passsword;
-	@Column(name = "ROLE_FIELD_NAME")
+	@Column(name = ROLE_FIELD_NAME)
 	private String role;
-	@Column(name = "DATE_ADMISSION_FIELD_NAME")
+	@Column(name = DATE_ADMISSION_FIELD_NAME)
 	private Date dateAdmission;
-	@Column(name = "TAX_CODE_FIELD_NAME")
+	@Column(name = TAX_CODE_FIELD_NAME)
 	private String taxCode;
-	@Column(name = "STREET_FIELD_NAME")
+	@Column(name = STREET_FIELD_NAME)
 	private String street;
-	@Column(name = "HOUSE_NUMBER_FIELD_NAME")
+	@Column(name = HOUSE_NUMBER_FIELD_NAME)
 	private String houseNumber;
-	@Column(name = "CITY_FIELD_NAME")
+	@Column(name = CITY_FIELD_NAME)
 	private String city;
-	@Column(name = "DATE_OF_BIRTH_FIELD_NAME")
+	@Column(name = DATE_OF_BIRTH_FIELD_NAME)
 	private Date dateOfBirth;
 	
-	public Users (String username, String password, String role, Date dateAdmission, String taxCode, String street, String houseNumber, String city, Date dateOfBirth){
+	public User() {}
+	
+	public User (String username, String password, String role, Date dateAdmission, String taxCode, String street, String houseNumber, String city, Date dateOfBirth){
 		this.username = username;
 		this.passsword = password;
 		this.role = role;
@@ -122,6 +129,14 @@ public class Users {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }
