@@ -32,13 +32,14 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, Registry.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
-			TableUtils.createTable(retval, Bom.class);
-			TableUtils.createTable(retval, Component.class);
+			TableUtils.createTableIfNotExists(retval, Bom.class);
+			TableUtils.createTableIfNotExists(retval, Component.class);
 			TableUtils.createTableIfNotExists(retval, Invoice.class);
 			TableUtils.createTableIfNotExists(retval, InvoiceItem.class);
 			TableUtils.createTableIfNotExists(retval, Order.class);
+			TableUtils.createTableIfNotExists(retval, User.class);
 			TableUtils.createTableIfNotExists(retval, OrderItem.class);
-			TableUtils.createTable(retval, DeliveryNote.class);
+			TableUtils.createTableIfNotExists(retval, DeliveryNote.class);
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
@@ -56,6 +57,12 @@ public class DaoModule extends AbstractModule {
 	@Singleton
 	public Dao<Component, Long> getComponentDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, Component.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<User, Long> getUserDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, User.class);
 	}
 	
 	public Dao<DeliveryNote, Long> getDeliveryNoteDao(ConnectionSource connection) throws SQLException {
