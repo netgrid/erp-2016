@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
+
 
 @Entity(name = "invoices")
 	public class Invoice {
@@ -37,11 +40,12 @@ import javax.persistence.OneToOne;
 		public static final String TRANSPORT_AMOUNT_FIELD_NAME = "inv_transport_amount";
 		public static final String IN_FINAL_AMOUNT_FIELD_NAME = "inv_amount";
 		public static final String REGISTRY_FIELD_NAME = "inv_registry";
+		public static final String IN_ITEM_FIELD_NAME = "inv_item";
 		
 		@Id
 		@GeneratedValue	
 		@Column(name = ID_FIELD_NAME)
-		private long id; 
+		private Long id; 
 		@Column(name = IN_HOLDER_FIELD_NAME)
 		private String holder;
 		@Column(name = ADDRESS_FIELD_NAME)
@@ -87,12 +91,12 @@ import javax.persistence.OneToOne;
 		@Column(name = IN_FINAL_AMOUNT_FIELD_NAME)
 		private String finalAmount;
 		
-		
 		@OneToOne
 		@JoinColumn(name = REGISTRY_FIELD_NAME)
 		private Registry registry;
 		
-		
+		@ForeignCollectionField
+		private ForeignCollection<InvoiceItem> invoiceItem;
 		
 		public Invoice(){}
 		
@@ -300,7 +304,5 @@ import javax.persistence.OneToOne;
 		public void setFinalAmount(String finalAmount) {
 			this.finalAmount = finalAmount;
 		}
-
-	
 
 }
