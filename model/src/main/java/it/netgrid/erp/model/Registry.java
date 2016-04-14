@@ -26,7 +26,7 @@ public class Registry {
 	@Id
 	@GeneratedValue
 	@Column(name=ID_FIELD_NAME)
-	private long id;
+	private Long id;
 	
 	@Column(name=REGISTRY_NAME_FIELD_NAME)
 	private String name;
