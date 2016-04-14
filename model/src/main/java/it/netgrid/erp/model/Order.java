@@ -24,28 +24,20 @@ public class Order {
 	private Long id;	
 	
 	@ForeignCollectionField
-	private ForeignCollection<OrderItem> order;	
+	private ForeignCollection<OrderItem> items;	
 	
 	@Column(name = NUMBER_ORDERS_FIELD_NAME)
 	private Integer numberOrders;
 
 	public Order() {}
 
-	public Order(Long id, ForeignCollection<OrderItem> order, Integer numberOrders) {
+	public Order(Long id, ForeignCollection<OrderItem> items, Integer numberOrders) {
 		super();
 		this.id = id;
-		this.order = order;
+		this.items = items;
 		this.numberOrders = numberOrders;
 	}
-
-	public ForeignCollection<OrderItem> getOrder() {
-		return order;
-	}
-
-	public void setOrder(ForeignCollection<OrderItem> order) {
-		this.order = order;
-	}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +52,14 @@ public class Order {
 
 	public void setNumberOrders(Integer numberOrders) {
 		this.numberOrders = numberOrders;
+	}
+
+	public ForeignCollection<OrderItem> getItems() {
+		return items;
+	}
+
+	public void setItems(ForeignCollection<OrderItem> items) {
+		this.items = items;
 	}
 
 }

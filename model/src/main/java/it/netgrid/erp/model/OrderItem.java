@@ -18,6 +18,8 @@ public class OrderItem {
 	public static final String PROVIDER_FIELD_NAME = "oit_provider_id";
 	public static final String STATE_CODE_FIELD_NAME = "oit_state_code";
 	public static final String INVOICE_FIELD_NAME = "oit_invoice_id";
+	public static final String ORDER_ID_FIELD_NAME = "oit_ord_id";
+	
 
 	@Id
 	@GeneratedValue
@@ -41,6 +43,10 @@ public class OrderItem {
 	@ManyToOne
 	@JoinColumn(name = INVOICE_FIELD_NAME)
 	private Invoice invoice;
+	
+	@ManyToOne
+	@JoinColumn(name = ORDER_ID_FIELD_NAME)
+	private Order order;
 
 	public OrderItem() {
 	}
@@ -99,6 +105,14 @@ public class OrderItem {
 
 	public void setDeliveryNotes(ForeignCollection<DeliveryNote> deliveryNotes) {
 		this.deliveryNotes = deliveryNotes;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 }

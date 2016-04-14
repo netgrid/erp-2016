@@ -1,54 +1,60 @@
 package it.netgrid.erp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
 
 @Entity(name="bom")
 public class Bom {
-	
-	public static final String ID_PRODUCT_NAME="bom_id_product";
-	public static final String ID_COMPONENT_NAME="bom_id_Component";
-	
-	@Id
-	@OneToOne
-	@JoinColumn(name=ID_PRODUCT_NAME)
-	private long idProduct;
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name=ID_COMPONENT_NAME)
-	private long idComponent;
-	
-	
 
+	public static final String ID_NAME="bom_id";
+	public static final String PRODUCT_NAME="bom_id_product";
+	
+	@Id
+	@GeneratedValue
+	@Column(name=ID_NAME)
+	private Long id;
+	
+	@Column(name=PRODUCT_NAME)
+	private String product;
+	
+	@ForeignCollectionField
+	private ForeignCollection<BomComponent> components;
 	
 	public Bom(){	
 	}
 	
-	public Bom(long idProduct, long idComponent){	
-		this.idComponent = idComponent;
-		this.idProduct = idProduct;
+	public Bom(String product, Long id){	
+		this.id = id;
+		this.product = product;
 	}
 
-	public long getIdProduct() {
-		return idProduct;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdProduct(int idProduct) {
-		this.idProduct = idProduct;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public long getIdComponent() {
-		return idComponent;
+	public String getProduct() {
+		return product;
 	}
 
-	public void setIdComponent(int idComponent) {
-		this.idComponent = idComponent;
+	public void setProduct(String product) {
+		this.product = product;
 	}
 
-	
-	
+	public ForeignCollection<BomComponent> getComponents() {
+		return components;
+	}
+
+	public void setComponents(ForeignCollection<BomComponent> components) {
+		this.components = components;
+	}
+
 }
