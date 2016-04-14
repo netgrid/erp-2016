@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import com.j256.ormlite.dao.ForeignCollection;
  
@@ -23,6 +24,7 @@ public class Order {
 	@Column(name = ID_FIELD_NAME)
 	private long id;	
 	
+	@OneToMany
 	@JoinColumn(name = ORDER_FIELD_NAME)
 	private ForeignCollection<OrderItem> order;	
 	
