@@ -12,51 +12,60 @@ import javax.persistence.OneToOne;
 @Entity(name = "delivery_notes")
 public class DeliveryNote {
 
+	public static final String ID_NAME = "dlv_id";
 	public static final String SEQUENTIAL_NUMBER_NAME = "dlv_sequential_number";
 	public static final String DOCUMENT_DATE_NAME = "dlv_documet_date";
 	public static final String PRODUCTS_AMOUNT_NAME = "dlv_products_amount";
-	public static final String CUSTOMER_NAME = "dlv_customer";
-	public static final String SELLER_NAME = "dlv_seller";
+	public static final String RECEIVER_ID_NAME = "dlv_receiver_id";
+	public static final String SENDER_ID_NAME = "dlv_sender_id";
 	public static final String REGISTRY_FIELD_NAME = "dlv_registry";
 
 	@Id
 	@GeneratedValue
+	@Column(name = ID_NAME)	
+	private Long id;
+	
 	@Column(name = SEQUENTIAL_NUMBER_NAME)
-	private int sequentialNumber;
+	private Integer sequentialNumber;
 
 	@Column(name = DOCUMENT_DATE_NAME)
 	private Date documentDate;
 
 	@Column(name = PRODUCTS_AMOUNT_NAME)
-	private int productsAmount;
-
-	@Column(name = CUSTOMER_NAME)
-	private Registry customer;
-
-	@Column(name = SELLER_NAME)
-	private Registry seller;
+	private Integer productsAmount;
 
 	@OneToOne
-	@JoinColumn(name = REGISTRY_FIELD_NAME)
-	private Registry registry;
+	@JoinColumn(name = RECEIVER_ID_NAME)
+	private Registry receiver;
+
+	@OneToOne
+	@JoinColumn(name = SENDER_ID_NAME)
+	private Registry sender;
 
 	public DeliveryNote() {
 	}
 
-	public DeliveryNote(int sequentialNumber, Date documentDate, int productsAmount, Registry customer,
-			Registry seller) {
+	public DeliveryNote(Integer sequentialNumber, Date documentDate, Integer productsAmount, Registry sender, Registry receiver) {
 		this.sequentialNumber = sequentialNumber;
 		this.documentDate = documentDate;
 		this.productsAmount = productsAmount;
-		this.customer = customer;
-		this.seller = seller;
+		this.receiver = receiver;
+		this.sender = sender;
+	}
+		
+	public Long getId() {
+		return id;
 	}
 
-	public int getSequentialNumber() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Integer getSequentialNumber() {
 		return sequentialNumber;
 	}
 
-	public void setSequentialNumber(int sequentialNumber) {
+	public void setSequentialNumber(Integer sequentialNumber) {
 		this.sequentialNumber = sequentialNumber;
 	}
 
@@ -68,28 +77,28 @@ public class DeliveryNote {
 		this.documentDate = documentDate;
 	}
 
-	public int getProductsAmount() {
+	public Integer getProductsAmount() {
 		return productsAmount;
 	}
 
-	public void setProductsAmount(int productsAmount) {
+	public void setProductsAmount(Integer productsAmount) {
 		this.productsAmount = productsAmount;
 	}
 
-	public Registry getCustomer() {
-		return customer;
+	public Registry getReceiver() {
+		return receiver;
 	}
 
-	public void setCustomer(Registry customer) {
-		this.customer = customer;
+	public void setReceiver(Registry receiver) {
+		this.receiver = receiver;
 	}
 
-	public Registry getSeller() {
-		return seller;
+	public Registry getSender() {
+		return sender;
 	}
 
-	public void setSeller(Registry seller) {
-		this.seller = seller;
+	public void setSender(Registry sender) {
+		this.sender = sender;
 	}
 
 }
