@@ -8,13 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.ForeignCollectionField;
 
-
+@XmlRootElement
 @Entity(name = "invoices")
-	public class Invoice {
+	public class Invoice implements CrudObject<Long>{
 		
 		public static final String ID_FIELD_NAME = "inv_id";
 		public static final String IN_HOLDER_FIELD_NAME = "inv_holder";
@@ -303,6 +304,12 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 		public void setFinalAmount(String finalAmount) {
 			this.finalAmount = finalAmount;
+		}
+
+		@Override
+		public Long getId() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 }
