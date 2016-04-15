@@ -11,7 +11,7 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.ForeignCollectionField;
 
 @Entity(name = "order_item")
-public class OrderItem {
+public class OrderItem implements CrudObject<Long> {
 
 	public static final String ID_FIELD_NAME = "oit_id";
 	public static final String CUSTOMER_FIELD_NAME = "oit_customer_id";
