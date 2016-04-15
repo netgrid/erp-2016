@@ -17,6 +17,7 @@ public class OrderRootService extends TemplateCrudService<Order, Long> {
 
 	private Dao<Order, Long> orderDao;
 	private Dao<OrderItem, Long> itemDao;
+	
 	@Inject
 	public OrderRootService(ConnectionSource connection, Dao<Order, Long> orderDao, Dao<OrderItem, Long> itemDao) {
 		super(connection);
