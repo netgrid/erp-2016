@@ -6,9 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity(name="registries")
-public class Registry {
+public class Registry implements CrudObject<Long> {
 
 	public static final String ID_FIELD_NAME="reg_id";
 	public static final String REGISTRY_NAME_FIELD_NAME="reg_name";
@@ -67,7 +69,7 @@ public class Registry {
 	public Registry(){};
 	
 	//costruttre di Registry
-	public Registry(long id, 
+	public Registry(Long id, 
 					char type, 
 					String name, 
 					String private_surname, 
@@ -97,11 +99,11 @@ public class Registry {
 
 	
 	//getters & setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
