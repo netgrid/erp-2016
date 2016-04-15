@@ -13,7 +13,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 @Entity(name="order")
 
-public class Order {
+public class Order implements CrudObject<Long>{
 	public static final String ID_FIELD_NAME = "ord_id";
 	public static final String ORDER_FIELD_NAME = "ord_order";
 	public static final String NUMBER_ORDERS_FIELD_NAME = "ord_number_orders";
