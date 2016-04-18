@@ -12,6 +12,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity(name="registries")
 public class Registry implements CrudObject<Long> {
 
+	public static final char PRIVATE = 'p';
+	public static final char COMPANY = 'c';
+	
 	public static final String ID_FIELD_NAME="reg_id";
 	public static final String REGISTRY_NAME_FIELD_NAME="reg_name";
 	public static final String SURNAME_FIELD_NAME="reg_surname";
@@ -66,7 +69,9 @@ public class Registry implements CrudObject<Long> {
 	
 	
 	
-	public Registry(){};
+	public Registry(){
+		this.type = PRIVATE;
+	};
 	
 	//costruttre di Registry
 	public Registry(Long id, 
