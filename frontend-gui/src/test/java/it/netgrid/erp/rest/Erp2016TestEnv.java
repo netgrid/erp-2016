@@ -22,6 +22,7 @@ public class Erp2016TestEnv extends AbstractModule {
 			install(new DaoModule());
 			install(new CrudServicesModule());
 			bind(GuiceBerryEnvMain.class).to(Erp2016EnvMain.class);
+			bind(PersistenceTestHandler.class).to(FullRandomPersistenceTestHandler.class).in(Singleton.class);
 		}
 		
 		@Provides
@@ -31,7 +32,7 @@ public class Erp2016TestEnv extends AbstractModule {
 				
 				@Override
 				public String getJdbcConnectionUrl() {
-					return "jdbc:h2:mem:siquri";
+					return "jdbc:h2:mem:erp2016";
 				}
 
 				@Override
