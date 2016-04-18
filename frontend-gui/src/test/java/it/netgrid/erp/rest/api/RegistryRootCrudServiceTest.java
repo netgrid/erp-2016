@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -16,6 +18,7 @@ import io.codearte.jfairy.Fairy;
 import it.netgrid.erp.model.Registry;
 import it.netgrid.erp.model.dto.RegistryRoot;
 import it.netgrid.erp.rest.Erp2016TestEnv;
+import it.netgrid.erp.rest.PersistenceTestHandler;
 
 public class RegistryRootCrudServiceTest {
 	
@@ -26,10 +29,24 @@ public class RegistryRootCrudServiceTest {
 	private Fairy fairy;
 	
 	@Inject
+	private PersistenceTestHandler persistence;
+	
+	@Inject
 	private RegistryRootCrudService classUnderTest;
 	
 	@Inject
 	private Dao<Registry, Long> registryDao;
+	
+	@Before
+	public void setUp() {
+		persistence.setup();
+		persistence.loadData();
+	}
+	
+	@After
+	public void tearDown() {
+		persistence.destroy();
+	}
 	
 	@Test
 	public void testCreateRawPersonalRegistry() throws SQLException {

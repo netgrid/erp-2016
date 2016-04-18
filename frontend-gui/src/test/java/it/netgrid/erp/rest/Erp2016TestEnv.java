@@ -22,6 +22,7 @@ public class Erp2016TestEnv extends AbstractModule {
 			install(new DaoModule());
 			install(new CrudServicesModule());
 			bind(GuiceBerryEnvMain.class).to(Erp2016EnvMain.class);
+			bind(PersistenceTestHandler.class).to(FullRandomPersistenceTestHandler.class).in(Singleton.class);
 		}
 		
 		@Provides
