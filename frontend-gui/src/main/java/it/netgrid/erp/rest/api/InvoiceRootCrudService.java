@@ -20,7 +20,7 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 	public static final String INVALID_CITY_INVOICE = "invoice/city";
 	public static final String INVALID_CITY_CLIENT_INVOICE = "invoice/city_client";
 	public static final String INVALID_CLIENT_INVOICE = "invoice/client";
-	public static final String INVALID_CONSIGN_INVOICE = "invoice/consign";	
+	public static final String INVALID_CONSIGN_INVOICE = "invoice/consign";
 	public static final String INVALID_CURRENCY_INVOICE = "invoice/currency";
 	public static final String INVALID_DATE_INV_INVOICE = "invoice/date_inv";
 	public static final String INVALID_FINAL_AMOUNT_INVOICE = "invoice/final_amount";
@@ -39,24 +39,18 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 	public static final String INVALID_ZIP_CODE_INVOICE = "invoice/zip_code";
 	public static final String INVALID_ZIP_CODE_CLIENT_INVOICE = "invoice/zip_code_client";
 	public static final String INVALID_ID_INVOICE_ITEMS = "invoice_items";
-	
-	
-	
+
 	private final Dao<Invoice, Long> invoiceDao;
 	private final Dao<InvoiceItem, Long> invoiceItemDao;
-	
-	
+
 	@Inject
-	public InvoiceRootCrudService(ConnectionSource connection,
-		Dao<Invoice, Long> invoiceDao,
-		Dao<InvoiceItem, Long> invoiceItemDao) {
-		super (connection);
-		
+	public InvoiceRootCrudService(ConnectionSource connection, Dao<Invoice, Long> invoiceDao,
+			Dao<InvoiceItem, Long> invoiceItemDao) {
+		super(connection);
+
 		this.invoiceDao = invoiceDao;
 		this.invoiceItemDao = invoiceItemDao;
 	}
-	
-
 
 	@Override
 	public InvoiceRoot read(Long key) throws SQLException, IllegalArgumentException {
@@ -67,7 +61,7 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 	@Override
 	public int createRaw(InvoiceRoot object) throws SQLException, IllegalArgumentException {
 		int retval = 0;
-		
+
 		// Verifica correttezza dati
 		Validate.notNull(object.getInvoice(), INVALID_ID_INVOICE);
 		Validate.notEmpty(object.getInvoice().getAddress(), INVALID_ADDRESS_INVOICE);
@@ -77,8 +71,8 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 		Validate.notEmpty(object.getInvoice().getCityClient(), INVALID_CITY_CLIENT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getClient(), INVALID_CLIENT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getConsign(), INVALID_CONSIGN_INVOICE);
-		Validate.notEmpty(object.getInvoice().getCurrency(), INVALID_CURRENCY_INVOICE);			
-		Validate.notNull(object.getInvoice().getDateInv(), INVALID_DATE_INV_INVOICE);	
+		Validate.notEmpty(object.getInvoice().getCurrency(), INVALID_CURRENCY_INVOICE);
+		Validate.notNull(object.getInvoice().getDateInv(), INVALID_DATE_INV_INVOICE);
 		Validate.notEmpty(object.getInvoice().getFinalAmount(), INVALID_FINAL_AMOUNT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getHolder(), INVALID_HOLDER_INVOICE);
 		Validate.notEmpty(object.getInvoice().getInvoiceItem(), INVALID_INVOICE_ITEM_INVOICE);
@@ -93,15 +87,15 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 		Validate.notEmpty(object.getInvoice().getVatNumber(), INVALID_VAT_NUMBER_INVOICE);
 		Validate.notEmpty(object.getInvoice().getVatNumClient(), INVALID_VAT_NUM_CLIENT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getZipCode(), INVALID_ZIP_CODE_INVOICE);
-		Validate.notEmpty(object.getInvoice().getZipCodeClient(), INVALID_ZIP_CODE_CLIENT_INVOICE);		
+		Validate.notEmpty(object.getInvoice().getZipCodeClient(), INVALID_ZIP_CODE_CLIENT_INVOICE);
 		Validate.notNull(object.getInvoiceItems(), INVALID_ID_INVOICE_ITEMS);
-		
+
 		// Creo righe nel DB
 		retval += this.invoiceDao.create(object.getInvoice());
-		for(InvoiceItem item : object.getInvoiceItems()){			
+		for (InvoiceItem item : object.getInvoiceItems()) {
 			item.setInvoice(object.getInvoice());
 			retval += this.invoiceItemDao.create(item);
-		}	
+		}
 		return retval;
 	}
 
@@ -116,5 +110,5 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }
