@@ -4,10 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.ForeignCollectionField;
-
+@XmlRootElement
 @Entity(name="bom")
 public class Bom {
 
