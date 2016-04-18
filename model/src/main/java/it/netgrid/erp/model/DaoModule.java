@@ -33,6 +33,7 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
 			TableUtils.createTableIfNotExists(retval, Bom.class);
+			TableUtils.createTableIfNotExists(retval, BomComponent.class);
 			TableUtils.createTableIfNotExists(retval, Component.class);
 			TableUtils.createTableIfNotExists(retval, Invoice.class);
 			TableUtils.createTableIfNotExists(retval, InvoiceItem.class);
