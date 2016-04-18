@@ -31,17 +31,17 @@ public class Product {
 	private BigDecimal quantity;
 	
 	@Column(name=UNITS_OF_MEASURE)
-	private String units_of_measure;
+	private String unitOfMeasure;
 	
 	public Product(){	
 	}
 	
-	public Product(Long id,String product,BigDecimal price,BigDecimal quantity, String misure){
+	public Product(Long id,String product,BigDecimal price,BigDecimal quantity, String unitOfMeasure){
 		this.id = id;
 		this.product = product;
 		this.price = price;
 		this.quantity = quantity;
-		this.units_of_measure = misure;
+		this.unitOfMeasure = unitOfMeasure;
 		
 	}
 	
@@ -76,12 +76,12 @@ public class Product {
 	public void setQuantity(BigDecimal quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public String getUnitOfMeasure() {
-		return units_of_measure;
+		return unitOfMeasure;
 	}
 
-	public void setUnitOfMeasure(String units_of_measure) {
-		this.units_of_measure = units_of_measure;
+	public void setUnitOfMeasure(String unitOfMeasure) {
+		this.unitOfMeasure = unitOfMeasure;
 	}
 }
