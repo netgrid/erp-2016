@@ -2,10 +2,11 @@ package it.netgrid.erp.model.dto;
 
 import java.util.List;
 
+import it.netgrid.erp.model.CrudObject;
 import it.netgrid.erp.model.Order;
 import it.netgrid.erp.model.OrderItem;
 
-public class OrderRoot {
+public class OrderRoot implements CrudObject<Long>{
 
 	private Order order;
 	private List<OrderItem> orderItems;
@@ -29,6 +30,12 @@ public class OrderRoot {
 
 	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
+	}
+
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

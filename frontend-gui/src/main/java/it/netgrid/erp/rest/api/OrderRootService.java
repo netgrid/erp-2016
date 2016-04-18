@@ -12,8 +12,9 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import it.netgrid.erp.model.Order;
 import it.netgrid.erp.model.OrderItem;
+import it.netgrid.erp.model.dto.OrderRoot;
 
-public class OrderRootService extends TemplateCrudService<Order, Long> {
+public class OrderRootService extends TemplateCrudService<OrderRoot, Long> {
 
 	private Dao<Order, Long> orderDao;
 	private Dao<OrderItem, Long> itemDao;
@@ -26,26 +27,26 @@ public class OrderRootService extends TemplateCrudService<Order, Long> {
 	}
 
 	@Override
-	public int createRaw(Order order) throws SQLException, IllegalArgumentException {
+	public int createRaw(OrderRoot order) throws SQLException, IllegalArgumentException {
 		int result=0;
 
 		return result;
 	}
 
 	@Override
-	public int updateRaw(Order order) throws SQLException, IllegalArgumentException {
+	public int updateRaw(OrderRoot order) throws SQLException, IllegalArgumentException {
 		
 		return 0;
 	}
 
 	@Override
-	public int deleteRaw(Order order) throws SQLException, IllegalArgumentException {
+	public int deleteRaw(OrderRoot order) throws SQLException, IllegalArgumentException {
 		
 		return 0;
 	}
 
 	@Override
-	public Order read(Long key) throws SQLException {
+	public OrderRoot read(Long key) throws SQLException {
 		
 		return null;
 	}
