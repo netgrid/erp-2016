@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @Entity(name = "invoice_items")
@@ -154,6 +155,7 @@ public class InvoiceItem {
 		this.amount = amount;
 	}
 
+	@XmlTransient
 	public Invoice getInvoice() {
 		return invoice;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -171,6 +172,27 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 		public String getPhone() {
 			return phone;
+		}
+
+		public Registry getRegistry() {
+			return registry;
+		}
+
+		public void setRegistry(Registry registry) {
+			this.registry = registry;
+		}
+
+		@XmlTransient
+		public ForeignCollection<InvoiceItem> getInvoiceItem() {
+			return invoiceItem;
+		}
+
+		public void setInvoiceItem(ForeignCollection<InvoiceItem> invoiceItem) {
+			this.invoiceItem = invoiceItem;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
 		}
 
 		public void setPhone(String phone) {

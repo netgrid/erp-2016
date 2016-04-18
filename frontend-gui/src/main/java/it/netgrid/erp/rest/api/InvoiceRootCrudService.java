@@ -50,7 +50,9 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 
 		// Creo righe nel DB
 		retval += this.invoiceDao.create(object.getInvoice());
-		
+		for() {
+			
+		}
 		
 		return retval;
 	}

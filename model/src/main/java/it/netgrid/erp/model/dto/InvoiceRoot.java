@@ -12,14 +12,14 @@ import it.netgrid.erp.model.InvoiceItem;
 public class InvoiceRoot implements CrudObject<Long>{
 
 	private Invoice invoice;
-	private List<InvoiceItem> invoiceItem; 
+	private List<InvoiceItem> invoiceGroup; 
 	
 	public InvoiceRoot() {}
 
-	public InvoiceRoot(Invoice invoice, List<InvoiceItem> invoiceItem) {
+	public InvoiceRoot(Invoice invoice, List<InvoiceItem> invoiceGroup) {
 		super();
 		this.invoice = invoice;
-		this.invoiceItem = invoiceItem;
+		this.invoiceGroup = invoiceGroup;
 	}
 
 	public Invoice getInvoice() {
@@ -30,18 +30,18 @@ public class InvoiceRoot implements CrudObject<Long>{
 		this.invoice = invoice;
 	}
 
-	public List<InvoiceItem> getInvoiceItem() {
-		return invoiceItem;
+	public List<InvoiceItem> getInvoiceGroup() {
+		return invoiceGroup;
 	}
 
-	public void setInvoiceItem(List<InvoiceItem> invoiceItem) {
-		this.invoiceItem = invoiceItem;
+	public void setInvoiceGroup(List<InvoiceItem> invoiceGroup) {
+		this.invoiceGroup = invoiceGroup;
 	}
 
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.invoice == null ? null : this.invoice.getId();
 	}
 
 	
