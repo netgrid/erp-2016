@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "product")
-public class Product {
+public class Product implements CrudObject<Long> {
 	public static final String ID_NAME="pro_id";
 	public static final String PRODUCT_NAME="pro_product_name";
 	public static final String PRODUCT_PRICE="pro_product_price";
