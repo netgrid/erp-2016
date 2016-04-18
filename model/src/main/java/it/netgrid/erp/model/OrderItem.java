@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -59,6 +60,7 @@ public class OrderItem implements CrudObject<Long> {
 		this.invoice = invoice;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -91,6 +93,7 @@ public class OrderItem implements CrudObject<Long> {
 		this.stateCode = stateCode;
 	}
 
+	@XmlTransient
 	public Invoice getInvoice() {
 		return invoice;
 	}
@@ -107,6 +110,7 @@ public class OrderItem implements CrudObject<Long> {
 		this.deliveryNotes = deliveryNotes;
 	}
 
+	@XmlTransient
 	public Order getOrder() {
 		return order;
 	}
