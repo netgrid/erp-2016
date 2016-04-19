@@ -9,16 +9,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.google.inject.Inject;
-import com.j256.ormlite.dao.Dao;
-
-import it.netgrid.erp.model.Registry;
-
 @Path("/version")
 public class VersionResource {
-	
-	@Inject
-	private Dao<Registry, Long> registryDao;
 	
 	@XmlRootElement
 	public static class SystemVersion {
