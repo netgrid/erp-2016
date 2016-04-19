@@ -284,61 +284,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<source>${version.java}</source>
-					<target>${version.java}</target>
-					<forkMode>pertest</forkMode>
-					<argLine>-Xms512m -Xmx512m</argLine>
-					<testFailureIgnore>false</testFailureIgnore>
-					<skip>false</skip>
-					<!-- <argLine>-XX:-UseSplitVerifier</argLine> -->
-					<argLine>-javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/1.8.6/aspectjweaver-1.8.6.jar</argLine>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>1.7</version>
-				<configuration>
-					<showWeaveInfo>true</showWeaveInfo>
-					<Xlint>ignore</Xlint>
-					<source>1.8</source>
-					<target>1.8</target>
-					<forceAjcCompile>true</forceAjcCompile>
-					<complianceLevel>1.8</complianceLevel>
-					<encoding>UTF-8</encoding>
-					<verbose>true</verbose>
-					<outxml>true</outxml>
-				</configuration>
-				<executions>
-					<execution>
-						<!-- IMPORTANT -->
-						<phase>process-sources</phase>
-						<goals>
-							<goal>compile</goal>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjtools</artifactId>
-						<version>${version.aspectj}</version>
-						<scope>compile</scope>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<!-- <version>3.3</version> -->
 				<configuration>
