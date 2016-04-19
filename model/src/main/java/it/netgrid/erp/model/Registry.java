@@ -6,10 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
+
+@XmlRootElement
 @Entity(name="registries")
-public class Registry {
+public class Registry implements CrudObject<Long> {
 
+	public static final char PRIVATE = 'p';
+	public static final char COMPANY = 'c';
+	
 	public static final String ID_FIELD_NAME="reg_id";
 	public static final String REGISTRY_NAME_FIELD_NAME="reg_name";
 	public static final String SURNAME_FIELD_NAME="reg_surname";
@@ -62,12 +70,16 @@ public class Registry {
 	@Column(name=PHONE_FIELD_NAME)
 	private String phoneNumber;
 	
+	@ForeignCollectionField
+	private ForeignCollection<RegistryGroupPivot> groupPivots;
 	
 	
-	public Registry(){};
+	public Registry(){
+		this.type = PRIVATE;
+	};
 	
 	//costruttre di Registry
-	public Registry(long id, 
+	public Registry(Long id, 
 					char type, 
 					String name, 
 					String private_surname, 
@@ -97,11 +109,11 @@ public class Registry {
 
 	
 	//getters & setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -193,7 +205,13 @@ public class Registry {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public ForeignCollection<RegistryGroupPivot> getGroupPivots() {
+		return groupPivots;
+	}
 
+	public void setGroupPivots(ForeignCollection<RegistryGroupPivot> groupPivots) {
+		this.groupPivots = groupPivots;
+	}
 	
 }
 
