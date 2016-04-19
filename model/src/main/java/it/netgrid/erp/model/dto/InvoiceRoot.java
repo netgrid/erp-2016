@@ -1,5 +1,6 @@
 package it.netgrid.erp.model.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import it.netgrid.erp.model.CrudObject;
 import it.netgrid.erp.model.Invoice;
 import it.netgrid.erp.model.InvoiceItem;
+import it.netgrid.erp.model.RegistryGroup;
 
 @XmlRootElement
 public class InvoiceRoot implements CrudObject<Long>{
@@ -16,10 +18,10 @@ public class InvoiceRoot implements CrudObject<Long>{
 	
 	public InvoiceRoot() {}
 
-	public InvoiceRoot(Invoice invoice, List<InvoiceItem> invoiceItems) {
+	public InvoiceRoot(Invoice invoice) {
 		super();
 		this.invoice = invoice;
-		this.invoiceItems = invoiceItems;
+		this.invoiceItems = new ArrayList<InvoiceItem>();
 	}
 
 	public Invoice getInvoice() {

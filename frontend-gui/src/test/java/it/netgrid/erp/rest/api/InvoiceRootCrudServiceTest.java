@@ -7,6 +7,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.j256.ormlite.dao.ForeignCollection;
 import io.codearte.jfairy.Fairy;
 import it.netgrid.erp.model.Invoice;
 import it.netgrid.erp.model.InvoiceItem;
+import it.netgrid.erp.model.Registry;
 import it.netgrid.erp.model.dto.InvoiceRoot;
 import it.netgrid.erp.rest.Erp2016TestEnv;
 import it.netgrid.erp.rest.PersistenceTestHandler;
@@ -41,10 +43,7 @@ public class InvoiceRootCrudServiceTest {
 	private InvoiceRootCrudService classUnderTest;
 
 	@Inject
-	private Dao<Invoice, Long> invoiceDao;
-
-	
-	
+	private Dao<Invoice, Long> invoiceDao;	
 
 	@Before
 	public void setUp() {
@@ -61,53 +60,52 @@ public class InvoiceRootCrudServiceTest {
 	public void testCreate() throws SQLException {
 		Invoice invoice = new Invoice();
 		InvoiceItem invoiceItem= new InvoiceItem();
-		List<InvoiceItem> items = new ArrayList<InvoiceItem>();
+		ForeignCollection<InvoiceItem> fcItems = null ;
+		InvoiceRoot input = new InvoiceRoot(invoice);
 		
-		InvoiceRoot input = new InvoiceRoot(invoice, items);
-		
+		// Aggiungo elementi ForeignCollections
+		fcItems.add(invoiceItem);
+		fcItems.add(invoiceItem);
 		
 		// Creazione Invoice		
-		invoice.setAddress(null);
-		invoice.setAddressClient(null);
-		invoice.setBank(null);
-		invoice.setCity(null);
-		invoice.setCityClient(null);
-		invoice.setClient(null);
-		invoice.setConsign(null);
-		invoice.setCurrency(null);
-		invoice.setDateInv(null);
-		invoice.setFinalAmount(null);
-		invoice.setHolder(null);
-		invoice.setInvoiceItem(null);
-		invoice.setNameProduct(null);
-		invoice.setNumber(null);
-		invoice.setPhone(null);
-		invoice.setRegistry(null);
-		invoice.setState(null);
-		invoice.setStateClient(null);
-		invoice.setTaxCodeClient(null);
-		invoice.setTransport(null);
-		invoice.setVatNumber(null);
-		invoice.setVatNumClient(null);
-		invoice.setZipCode(null);
-		invoice.setZipCodeClient(null);
+		invoice.setAddress("");
+		invoice.setAddressClient("");
+		invoice.setBank("");
+		invoice.setCity("");
+		invoice.setCityClient("");
+		invoice.setClient("");
+		invoice.setConsign("");
+		invoice.setCurrency("");
+		invoice.setDateInv(new Date(2015/05/05));
+		invoice.setFinalAmount("");
+		invoice.setHolder("");
+		invoice.setInvoiceItem(fcItems);
+		invoice.setNameProduct("");
+		invoice.setNumber("");
+		invoice.setPhone("");
+		invoice.setRegistry(new Registry());
+		invoice.setState("");
+		invoice.setStateClient("");
+		invoice.setTaxCodeClient("");
+		invoice.setTransport("");
+		invoice.setVatNumber("");
+		invoice.setVatNumClient("");
+		invoice.setZipCode("");
+		invoice.setZipCodeClient("");
 		
 		// Creazione singolo item
-		invoiceItem.setAmount(null);
-		invoiceItem.setDescription(null);
-		invoiceItem.setDimension(null);
-		invoiceItem.setDiscount(null);
+		invoiceItem.setAmount(new BigDecimal(10));
+		invoiceItem.setDescription("");
+		invoiceItem.setDimension(new BigDecimal(10));
+		invoiceItem.setDiscount(new BigDecimal(10));
 		invoiceItem.setInvoice(null);
-		invoiceItem.setMeasureUnit(null);
-		invoiceItem.setOnePrice(null);
-		invoiceItem.setProduct(null);
-		invoiceItem.setQuantity(null);
-		invoiceItem.setThickness(null);
-		invoiceItem.setVatCodeProduct(null);
+		invoiceItem.setMeasureUnit("");
+		invoiceItem.setOnePrice(new BigDecimal(10));
+		invoiceItem.setProduct("");
+		invoiceItem.setQuantity(new BigDecimal(10));
+		invoiceItem.setThickness(new BigDecimal(10));
+		invoiceItem.setVatCodeProduct("");
 		
-		// Aggiungo elementi nella List
-		items.add(invoiceItem);
-		items.add(invoiceItem);
 		
 		this.classUnderTest.create(input);
 		
@@ -127,5 +125,18 @@ public class InvoiceRootCrudServiceTest {
 		assertThat("", invoice.getDateInv(), equalTo(current.getDateInv()));
 		assertThat("", invoice.getFinalAmount(), equalTo(current.getFinalAmount()));
 		assertThat("", invoice.getHolder(), equalTo(current.getHolder()));
+		assertThat("", invoice.getInvoiceItem(), equalTo(current.getInvoiceItem()));
+		assertThat("", invoice.getNameProduct(), equalTo(current.getNameProduct()));
+		assertThat("", invoice.getNumber(), equalTo(current.getNumber()));
+		assertThat("", invoice.getPhone(), equalTo(current.getPhone()));
+		assertThat("", invoice.getRegistry(), equalTo(current.getRegistry()));
+		assertThat("", invoice.getState(), equalTo(current.getState()));
+		assertThat("", invoice.getStateClient(), equalTo(current.getStateClient()));
+		assertThat("", invoice.getTaxCodeClient(), equalTo(current.getTaxCodeClient()));
+		assertThat("", invoice.getTransport(), equalTo(current.getTransport()));
+		assertThat("", invoice.getVatNumber(), equalTo(current.getVatNumber()));
+		assertThat("", invoice.getVatNumClient(), equalTo(current.getVatNumClient()));
+		assertThat("", invoice.getZipCode(), equalTo(current.getZipCode()));
+		assertThat("", invoice.getZipCodeClient(), equalTo(current.getZipCodeClient()));
 	}
 }
