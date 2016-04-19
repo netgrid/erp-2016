@@ -16,25 +16,20 @@ public class BomRootCrudService extends TemplateCrudService<BomRoot, Long> {
 
 	public static final String INVALID_ID_BOM = "Bom";
 	public static final String INVALID_ID_COMPONENT = "Component";
-	
+
 	private final Dao<Bom, Long> BomDao;
 	private final Dao<Component, Long> ComponentDao;
 	private final Dao<BomComponent, Long> BomComponentDao;
-	
-	
-	@Inject
-	public BomRootCrudService(ConnectionSource connection,
-		Dao<Bom, Long> BomDao,
-		Dao<Component, Long> ComponentDao,
-		Dao<BomComponent, Long> BomComponentDao) {
-		super (connection);
-		
-		this.BomDao=BomDao;
-		this.ComponentDao=ComponentDao;
-		this.BomComponentDao=BomComponentDao;
-	}
-	
 
+	@Inject
+	public BomRootCrudService(ConnectionSource connection, Dao<Bom, Long> BomDao, Dao<Component, Long> ComponentDao,
+			Dao<BomComponent, Long> BomComponentDao) {
+		super(connection);
+
+		this.BomDao = BomDao;
+		this.ComponentDao = ComponentDao;
+		this.BomComponentDao = BomComponentDao;
+	}
 
 	@Override
 	public BomRoot read(Long key) throws SQLException, IllegalArgumentException {
@@ -45,24 +40,20 @@ public class BomRootCrudService extends TemplateCrudService<BomRoot, Long> {
 	@Override
 	public int createRaw(BomRoot object) throws SQLException, IllegalArgumentException {
 		int retval = 0;
-		
+
 		// Verifica correttezza dati
 		Validate.notNull(object.getBom(), INVALID_ID_BOM);
 		Validate.notNull(object.getComponent(), INVALID_ID_COMPONENT);
 		Validate.notEmpty(object.getBom().getComponents(), INVALID_ID_COMPONENT);
-		
 
 		// Creo righe nel DB
 		retval += this.BomDao.create(object.getBom());
-		for(Component item : object.getComponent()) {
-			BomComponent components= new BomComponent(object.getBom(), item);
-			 retval += this.BomComponentDao.create(components);
-		  
-		
-
+		for (Component item : object.getComponent()) {
+			BomComponent components = new BomComponent(object.getBom(), item);
+			retval += this.BomComponentDao.create(components);
 
 		}
-		
+
 		return retval;
 	}
 
@@ -77,5 +68,5 @@ public class BomRootCrudService extends TemplateCrudService<BomRoot, Long> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 }
