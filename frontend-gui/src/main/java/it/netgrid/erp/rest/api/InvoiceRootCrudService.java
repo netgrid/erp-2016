@@ -9,6 +9,7 @@ import it.netgrid.erp.model.dto.InvoiceRoot;
 
 import com.google.inject.Inject;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 
 public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Long> {
@@ -54,7 +55,7 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 
 	@Override
 	public InvoiceRoot read(Long key) throws SQLException, IllegalArgumentException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -107,8 +108,18 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 
 	@Override
 	public int deleteRaw(InvoiceRoot object) throws SQLException, IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+		int retval = 0;
+		
+		// Verifico correttezza dati
+		
+		
+		// Elimino righe nel DB
+		DeleteBuilder<Invoice, Long> deleteQuery = this.invoiceDao.deleteBuilder();
+		deleteQuery.where().eq(Invoice.ADDRESS_FIELD_NAME, object.getId());
+		retval += deleteQuery.delete();
+		retval += this.invoiceDao.delete(object.getInvoice());
+		
+		return retval;
 	}
 
 }
