@@ -7,6 +7,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 
 import it.netgrid.erp.model.Bom;
+import it.netgrid.erp.model.BomComponent;
 import it.netgrid.erp.model.Component;
 import it.netgrid.erp.model.CrudObject;
 import it.netgrid.erp.model.dto.BomRoot;
@@ -18,16 +19,19 @@ public class BomRootCrudService extends TemplateCrudService<BomRoot, Long> {
 	
 	private final Dao<Bom, Long> BomDao;
 	private final Dao<Component, Long> ComponentDao;
+	private final Dao<BomComponent, Long> BomComponentDao;
 	
 	
 	@Inject
 	public BomRootCrudService(ConnectionSource connection,
 		Dao<Bom, Long> BomDao,
-		Dao<Component, Long> ComponentDao) {
+		Dao<Component, Long> ComponentDao,
+		Dao<BomComponent, Long> BomComponentDao) {
 		super (connection);
 		
 		this.BomDao=BomDao;
 		this.ComponentDao=ComponentDao;
+		this.BomComponentDao=BomComponentDao;
 	}
 	
 
@@ -45,12 +49,18 @@ public class BomRootCrudService extends TemplateCrudService<BomRoot, Long> {
 		// Verifica correttezza dati
 		Validate.notNull(object.getBom(), INVALID_ID_BOM);
 		Validate.notNull(object.getComponent(), INVALID_ID_COMPONENT);
+		Validate.notEmpty(object.getBom().getComponents(), INVALID_ID_COMPONENT);
 		
 
 		// Creo righe nel DB
 		retval += this.BomDao.create(object.getBom());
-		for(Component component : object.getComponent()) {
-			
+		for(Component item : object.getComponent()) {
+			BomComponent components= new BomComponent(object.getBom(), item);
+			 retval += this.BomComponentDao.create(components);
+		  
+		
+
+
 		}
 		
 		return retval;
