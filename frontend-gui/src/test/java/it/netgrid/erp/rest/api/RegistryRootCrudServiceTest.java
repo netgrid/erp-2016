@@ -1,6 +1,8 @@
 package it.netgrid.erp.rest.api;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -13,9 +15,12 @@ import org.junit.Test;
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.google.inject.Inject;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import io.codearte.jfairy.Fairy;
 import it.netgrid.erp.model.Registry;
+import it.netgrid.erp.model.RegistryGroup;
+import it.netgrid.erp.model.RegistryGroupPivot;
 import it.netgrid.erp.model.dto.RegistryRoot;
 import it.netgrid.erp.rest.Erp2016TestEnv;
 import it.netgrid.erp.rest.PersistenceTestHandler;
@@ -37,6 +42,9 @@ public class RegistryRootCrudServiceTest {
 	@Inject
 	private Dao<Registry, Long> registryDao;
 	
+	@Inject
+	private Dao<RegistryGroupPivot, Long> registryGroupPivotDao;
+	
 	@Before
 	public void setUp() {
 		persistence.setup();
@@ -49,10 +57,36 @@ public class RegistryRootCrudServiceTest {
 	}
 	
 	@Test
+	public void testReadRegistryRoot() throws SQLException {
+		// Definisco quale registry andare a leggere
+		long registryId = 1;
+		
+		// Recupero gli id dei gruppi per questo registry
+		QueryBuilder<RegistryGroupPivot, Long> query = this.registryGroupPivotDao.queryBuilder();
+		query.where().eq(RegistryGroupPivot.REGISTRY_FIELD_NAME, registryId);
+		List<Long> groupIds = new ArrayList<Long>();
+		for(RegistryGroupPivot pivot : query.query()) {
+			groupIds.add(pivot.getRegistryGroup().getId());
+		}
+		
+		// Eseguo il metodo da testare
+		RegistryRoot result = this.classUnderTest.read(registryId);
+		
+		// Verifico la presenza dei dati di registry
+		assertThat("have same id", registryId, equalTo(result.getId()));
+		
+		// Verifico la presenza dei gruppi
+		assertThat("have same group count", groupIds.size(), equalTo(result.getGroups().size()));
+		for(RegistryGroup group : result.getGroups()) {
+			assertThat("group is present", groupIds.contains(group.getId()), equalTo(true));
+		}
+	}
+	
+	@Test
 	public void testCreateRawPersonalRegistry() throws SQLException {
+		
 		Registry expected = new Registry();
 		RegistryRoot input = new RegistryRoot(expected);
-		
 		expected.setAddressCity(fairy.person().getAddress().getCity());
 		expected.setAddressCountry(fairy.person().getAddress().getCity());
 		expected.setAddressNum(fairy.person().getAddress().streetNumber());

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <link rel="stylesheet" href="../js/webix/webix.css" type="text/css" media="screen" charset="utf-8">
+       <script src="../js/webix/webix.js" type="text/javascript" charset="utf-8"></script>
+       <title>ERP 2016</title>
+   </head>
+   <body>
+       <!--<div id='layout_div' style='width:100%; height:600px; margin:0px; padding:0px'></div>-->
+       <script type="text/javascript" charset="utf-8">
+/*
+		   var maintree = webix.ui({ 
+				id:"maintree",
+				view:"tree", 
+				gravity:0.4, 
+				select:true,
+				data:[
+					{id:"registry", value:"Anagrafica", data:[
+						{id:"registry.groups", value:"Gruppi"},
+						{id:"registry.customers", value:"Clienti"},
+						{id:"registry.suppliers", value:"Fornitori"}
+					]}
+				]
+			});
+
+			var maindata = webix.ui({ id:"maindata", view:"datatable", autoConfig:true, data:[] });
+			var maintoolbar = webix.ui({ id:"maintoolbar", type:"header", template:"My App!" });
+			
+			webix.ui({
+				rows:[
+					{ type:"header", template:"My App!" },
+					{ cols:[
+						{ view:"tree", data:[], gravity:0.4, select:true },
+						{ view:"resizer" },
+						{ view:"datatable", autoConfig:true, data:[] }
+					]}
+				]
+			});*/
+		
+           webix.ui({
+			cols: [
+				{ 
+				id:"maintree",
+				view:"tree", 
+				gravity:0.4, 
+				select:true,
+				data:[
+					{id:"registry", value:"Anagrafica", data:[
+						{id:"registry.groups", value:"Gruppi"},
+						{id:"registry.customers", value:"Clienti"},
+						{id:"registry.suppliers", value:"Fornitori"}
+					]}
+				]
+			},
+				{ view:"resizer" },
+				{ rows: [
+					{ id:"maintoolbar", type:"header", template:"My App!" },
+					{ id:"maindata", view:"datatable", autoConfig:true, data:[] }
+				]}
+			]
+		   }).show();
+			
+			$$("maintree").attachEvent("onItemDblClick", function(item) {
+				switch(item) {
+					case "registry.groups":
+						webix.ajax("http://localhost:8080/erp-frontend-gui/registry/groups/",{
+							error:function(text, data, XmlHttpRequest){
+								alert("error");
+							},
+							success:function(text, data, XmlHttpRequest){
+								var list = JSON.parse(text);
+								$$("maindata").parse(list.registryGroup);
+							}
+						});
+						//$$("maindata").load("http://localhost:8080/erp-frontend-gui/registry/groups/","xml");
+					break;
+					default:break;
+				}
+			});
+       </script>
+   </body>
+</html>

@@ -65,8 +65,11 @@ public class RegistryRootCrudService extends TemplateCrudService<RegistryRoot, L
 
 	@Override
 	public int updateRaw(RegistryRoot object) throws SQLException, IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return 0;
+		int retval = 0;
+		
+		//TODO realizzazione update
+		
+		return retval;
 	}
 
 	@Override
