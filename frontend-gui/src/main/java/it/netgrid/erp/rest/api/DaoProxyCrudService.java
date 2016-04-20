@@ -38,4 +38,7 @@ public class DaoProxyCrudService<T extends CrudObject<ID>, ID> extends TemplateC
 		return dao.delete(object);
 	}
 
+	protected Dao<T, ID> getDao() {
+		return this.dao;
+	}
 }
