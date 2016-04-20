@@ -7,7 +7,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -19,12 +18,10 @@ import org.junit.Test;
 import com.google.guiceberry.junit4.GuiceBerryRule;
 import com.google.inject.Inject;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.ForeignCollection;
 
 import io.codearte.jfairy.Fairy;
 import it.netgrid.erp.model.Invoice;
 import it.netgrid.erp.model.InvoiceItem;
-import it.netgrid.erp.model.Registry;
 import it.netgrid.erp.model.dto.InvoiceRoot;
 import it.netgrid.erp.rest.Erp2016TestEnv;
 import it.netgrid.erp.rest.PersistenceTestHandler;
@@ -57,62 +54,55 @@ public class InvoiceRootCrudServiceTest {
 	}
 
 	@Test
-	public void testCreate() throws SQLException {
+	public void testCreateRaw() throws SQLException {
 		Invoice invoice = new Invoice();
-		InvoiceItem invoiceItem= new InvoiceItem();
-		ForeignCollection<InvoiceItem> fcItems = null ;
-		InvoiceRoot input = new InvoiceRoot(invoice);
-		
-		// Aggiungo elementi ForeignCollections
-		fcItems.add(invoiceItem);
-		fcItems.add(invoiceItem);
+		InvoiceItem item= new InvoiceItem();
+		List<InvoiceItem> expected = new ArrayList<InvoiceItem>();
+		InvoiceRoot input = new InvoiceRoot(invoice);		
 		
 		// Creazione Invoice		
-		invoice.setAddress("");
-		invoice.setAddressClient("");
-		invoice.setBank("");
-		invoice.setCity("");
-		invoice.setCityClient("");
-		invoice.setClient("");
-		invoice.setConsign("");
-		invoice.setCurrency("");
+		invoice.setAddress(fairy.person().getAddress().street());
+		invoice.setAddressClient(fairy.person().getAddress().street());
+		invoice.setBank("sasas");
+		invoice.setCity(fairy.person().getAddress().getCity());
+		invoice.setCityClient(fairy.person().getAddress().getCity());
+		invoice.setClient("fdfd");
+		invoice.setConsign("dfdf");
+		invoice.setCurrency("rfrfr");
 		invoice.setDateInv(new Date(2015/05/05));
-		invoice.setFinalAmount("");
-		invoice.setHolder("");
-		invoice.setInvoiceItem(fcItems);
-		invoice.setNameProduct("");
-		invoice.setNumber("");
-		invoice.setPhone("");
-		invoice.setRegistry(new Registry());
-		invoice.setState("");
-		invoice.setStateClient("");
-		invoice.setTaxCodeClient("");
-		invoice.setTransport("");
-		invoice.setVatNumber("");
-		invoice.setVatNumClient("");
-		invoice.setZipCode("");
-		invoice.setZipCodeClient("");
-		
+		invoice.setFinalAmount("hyht");
+		invoice.setHolder("gfrd");
+		invoice.setNameProduct("jujg");
+		invoice.setNumber("rgrg");
+		invoice.setPhone(fairy.person().telephoneNumber());
+		invoice.setState("frfer");
+		invoice.setStateClient("dfd");
+		invoice.setTaxCodeClient("dffd");
+		invoice.setTransport("rrr");
+		invoice.setVatNumber("fd");
+		invoice.setVatNumClient("fdfd");
+		invoice.setZipCode(fairy.person().getAddress().getPostalCode());
+		invoice.setZipCodeClient(fairy.person().getAddress().getPostalCode());
+		/*
 		// Creazione singolo item
-		invoiceItem.setAmount(new BigDecimal(10));
-		invoiceItem.setDescription("");
-		invoiceItem.setDimension(new BigDecimal(10));
-		invoiceItem.setDiscount(new BigDecimal(10));
-		invoiceItem.setInvoice(null);
-		invoiceItem.setMeasureUnit("");
-		invoiceItem.setOnePrice(new BigDecimal(10));
-		invoiceItem.setProduct("");
-		invoiceItem.setQuantity(new BigDecimal(10));
-		invoiceItem.setThickness(new BigDecimal(10));
-		invoiceItem.setVatCodeProduct("");
-		
-		
+		item.setAmount(new BigDecimal(10));
+		item.setDescription("");
+		item.setDimension(new BigDecimal(10));
+		item.setDiscount(new BigDecimal(10));
+		item.setInvoice(null);
+		item.setMeasureUnit("");
+		item.setOnePrice(new BigDecimal(10));
+		item.setProduct("");
+		item.setQuantity(new BigDecimal(10));
+		item.setThickness(new BigDecimal(10));
+		item.setVatCodeProduct("");
+		*/
 		this.classUnderTest.create(input);
-		
 		
 		assertThat("created id is not null", input.getId(), not(equalTo(null)));
 		
 		Invoice current = this.invoiceDao.queryForId(input.getId());
+		
 		assertThat("current is not null", current, not(equalTo(null)));
 		assertThat("", invoice.getAddress(), equalTo(current.getAddress()));
 		assertThat("", invoice.getAddressClient(), equalTo(current.getAddressClient()));
@@ -125,11 +115,9 @@ public class InvoiceRootCrudServiceTest {
 		assertThat("", invoice.getDateInv(), equalTo(current.getDateInv()));
 		assertThat("", invoice.getFinalAmount(), equalTo(current.getFinalAmount()));
 		assertThat("", invoice.getHolder(), equalTo(current.getHolder()));
-		assertThat("", invoice.getInvoiceItem(), equalTo(current.getInvoiceItem()));
 		assertThat("", invoice.getNameProduct(), equalTo(current.getNameProduct()));
 		assertThat("", invoice.getNumber(), equalTo(current.getNumber()));
 		assertThat("", invoice.getPhone(), equalTo(current.getPhone()));
-		assertThat("", invoice.getRegistry(), equalTo(current.getRegistry()));
 		assertThat("", invoice.getState(), equalTo(current.getState()));
 		assertThat("", invoice.getStateClient(), equalTo(current.getStateClient()));
 		assertThat("", invoice.getTaxCodeClient(), equalTo(current.getTaxCodeClient()));

@@ -55,14 +55,22 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 
 	@Override
 	public InvoiceRoot read(Long key) throws SQLException, IllegalArgumentException {
+		Invoice invoice = this.invoiceDao.queryForId(key);
+		InvoiceRoot retval = new InvoiceRoot(invoice);
+		/*
+		for(InvoiceItem item : invoice.getInvoiceItem()) {
+			
+			this.invoiceDao.refresh(data);
+			retval.getInvoiceItems().add(item);
+		}*/
+		return retval;
 		
-		return null;
 	}
 
 	@Override
 	public int createRaw(InvoiceRoot object) throws SQLException, IllegalArgumentException {
 		int retval = 0;
-
+		
 		// Verifica correttezza dati
 		Validate.notNull(object.getInvoice(), INVALID_ID_INVOICE);
 		Validate.notEmpty(object.getInvoice().getAddress(), INVALID_ADDRESS_INVOICE);
@@ -76,11 +84,9 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 		Validate.notNull(object.getInvoice().getDateInv(), INVALID_DATE_INV_INVOICE);
 		Validate.notEmpty(object.getInvoice().getFinalAmount(), INVALID_FINAL_AMOUNT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getHolder(), INVALID_HOLDER_INVOICE);
-		Validate.notEmpty(object.getInvoice().getInvoiceItem(), INVALID_INVOICE_ITEM_INVOICE);
 		Validate.notEmpty(object.getInvoice().getNameProduct(), INVALID_NAME_PRODUCT_INVOICE);
 		Validate.notNull(object.getInvoice().getNumber(), INVALID_NUMBER_INVOICE);
 		Validate.notEmpty(object.getInvoice().getPhone(), INVALID_PHONE_INVOICE);
-		Validate.notNull(object.getInvoice().getRegistry(), INVALID_REGISTRY_INVOICE);
 		Validate.notEmpty(object.getInvoice().getState(), INVALID_STATE_INVOICE);
 		Validate.notEmpty(object.getInvoice().getStateClient(), INVALID_STATE_CLIENT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getTaxCodeClient(), INAVLID_TAX_CODE_CLIENT_INVOICE);
@@ -89,8 +95,7 @@ public class InvoiceRootCrudService extends TemplateCrudService<InvoiceRoot, Lon
 		Validate.notEmpty(object.getInvoice().getVatNumClient(), INVALID_VAT_NUM_CLIENT_INVOICE);
 		Validate.notEmpty(object.getInvoice().getZipCode(), INVALID_ZIP_CODE_INVOICE);
 		Validate.notEmpty(object.getInvoice().getZipCodeClient(), INVALID_ZIP_CODE_CLIENT_INVOICE);
-		Validate.notNull(object.getInvoiceItems(), INVALID_ID_INVOICE_ITEMS);
-
+	
 		// Creo righe nel DB
 		retval += this.invoiceDao.create(object.getInvoice());
 		for (InvoiceItem item : object.getInvoiceItems()) {

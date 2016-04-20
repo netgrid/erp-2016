@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import it.netgrid.erp.model.CrudObject;
 import it.netgrid.erp.model.Invoice;
 import it.netgrid.erp.model.InvoiceItem;
-import it.netgrid.erp.model.RegistryGroup;
 
 @XmlRootElement
 public class InvoiceRoot implements CrudObject<Long>{
@@ -42,7 +41,6 @@ public class InvoiceRoot implements CrudObject<Long>{
 
 	@Override
 	public Long getId() {
-		// TODO Auto-generated method stub
 		return this.invoice == null ? null : this.invoice.getId();
 	}
 
