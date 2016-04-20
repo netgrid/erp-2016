@@ -1,6 +1,10 @@
 package it.netgrid.erp.rest.api;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -67,7 +71,33 @@ public class RegistryRootCrudService extends TemplateCrudService<RegistryRoot, L
 	public int updateRaw(RegistryRoot object) throws SQLException, IllegalArgumentException {
 		int retval = 0;
 		
-		//TODO realizzazione update
+		Registry currentData = this.registryDao.queryForId(object.getId());
+		retval += this.registryDao.update(object.getRegistry());
+		
+		// Creo strutture dati di supporto
+		List<Long> itemsToDeleteIds = new ArrayList<Long>();
+		Map<Long, RegistryGroup> itemsToAdd = new HashMap<Long, RegistryGroup>();
+		for(RegistryGroup group : object.getGroups()) {
+			itemsToAdd.put(group.getId(), group);
+		}
+		
+		// Calcolo differenze
+		for(RegistryGroupPivot pivot : currentData.getGroupPivots()) {
+			if(itemsToAdd.containsKey(pivot.getId())) {
+				itemsToAdd.remove(pivot.getId());
+			} else {
+				itemsToDeleteIds.add(pivot.getId());
+			}
+		}
+		
+		// Aggiungo gli assenti
+		for(RegistryGroup group : itemsToAdd.values()) {
+			RegistryGroupPivot pivot = new RegistryGroupPivot(currentData, group);
+			retval += this.registryGroupPivotDao.create(pivot);
+		}
+		
+		// Rimuovo i superflui
+		retval += this.registryGroupPivotDao.deleteIds(itemsToDeleteIds);
 		
 		return retval;
 	}
