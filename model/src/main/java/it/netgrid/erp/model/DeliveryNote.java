@@ -19,6 +19,7 @@ public class DeliveryNote {
 	public static final String RECEIVER_ID_NAME = "dlv_receiver_id";
 	public static final String SENDER_ID_NAME = "dlv_sender_id";
 	public static final String REGISTRY_FIELD_NAME = "dlv_registry";
+	public static final String ORDER_ITEM_ID_NAME = "dlv_oit_id";
 
 	@Id
 	@GeneratedValue
@@ -41,6 +42,10 @@ public class DeliveryNote {
 	@OneToOne
 	@JoinColumn(name = SENDER_ID_NAME)
 	private Registry sender;
+
+	@OneToOne
+	@JoinColumn(name = ORDER_ITEM_ID_NAME)
+	private OrderItem orderItem;
 
 	public DeliveryNote() {
 	}
@@ -99,6 +104,14 @@ public class DeliveryNote {
 
 	public void setSender(Registry sender) {
 		this.sender = sender;
+	}
+
+	public OrderItem getOrderItem() {
+		return orderItem;
+	}
+
+	public void setOrderItem(OrderItem orderItem) {
+		this.orderItem = orderItem;
 	}
 
 }

@@ -32,7 +32,15 @@ public class DaoModule extends AbstractModule {
 			TableUtils.createTableIfNotExists(retval, Registry.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroup.class);
 			TableUtils.createTableIfNotExists(retval, RegistryGroupPivot.class);
-			TableUtils.createTable(retval, DeliveryNote.class);
+			TableUtils.createTableIfNotExists(retval, Bom.class);
+			TableUtils.createTableIfNotExists(retval, Component.class);
+			TableUtils.createTableIfNotExists(retval, Invoice.class);
+			TableUtils.createTableIfNotExists(retval, InvoiceItem.class);
+			TableUtils.createTableIfNotExists(retval, Order.class);
+			TableUtils.createTableIfNotExists(retval, User.class);
+			TableUtils.createTableIfNotExists(retval, OrderItem.class);
+			TableUtils.createTableIfNotExists(retval, DeliveryNote.class);
+			TableUtils.createTableIfNotExists(retval, Product.class);
 		} catch (SQLException e) {
 			log.warn("SQL errors during DB creation");
 			log.debug("SQL errors during DB creation:",e);
@@ -42,6 +50,22 @@ public class DaoModule extends AbstractModule {
 	
 	@Provides
 	@Singleton
+	public Dao<Bom, Long> getBomDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Bom.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<Component, Long> getComponentDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Component.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<User, Long> getUserDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, User.class);
+	}
+	
 	public Dao<DeliveryNote, Long> getDeliveryNoteDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, DeliveryNote.class);
 	}	
@@ -63,4 +87,34 @@ public class DaoModule extends AbstractModule {
 	public Dao<RegistryGroupPivot, Long> getRegistryGroupPivotDao(ConnectionSource connection) throws SQLException {
 		return DaoManager.createDao(connection, RegistryGroupPivot.class);
 	}
+	
+	@Provides
+	@Singleton
+	public Dao<Invoice, Long> getInvoiceDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Invoice.class);
+	}
+	@Provides
+	@Singleton
+	public Dao<InvoiceItem, Long> getInvoiceItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, InvoiceItem.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<Order, Long> OrderDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Order.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<OrderItem, Long> OrderItemDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, OrderItem.class);
+	}
+	
+	@Provides
+	@Singleton
+	public Dao<Product, Long> getProductDao(ConnectionSource connection) throws SQLException {
+		return DaoManager.createDao(connection, Product.class);
+	}
+
 }
