@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import com.google.inject.servlet.GuiceServletContextListener;
 
 import it.netgrid.erp.model.DaoModule;
+import it.netgrid.erp.rest.api.CrudServicesModule;
 
 public class WebApplicationEnv extends GuiceServletContextListener {
 	
@@ -14,7 +15,8 @@ public class WebApplicationEnv extends GuiceServletContextListener {
 				new BootstrapServletModule(),
 				new SessionHandlingModule(),
 				new ConfigurationModule(),
-				new DaoModule());
+				new DaoModule(),
+				new CrudServicesModule());
 		
 		return injector;
 	}
