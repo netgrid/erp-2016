@@ -8,10 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.j256.ormlite.dao.ForeignCollection;
+import com.j256.ormlite.field.ForeignCollectionField;
+
 @XmlRootElement
 @Entity(name="registries")
 public class Registry implements CrudObject<Long> {
 
+	public static final char PRIVATE = 'p';
+	public static final char COMPANY = 'c';
+	
 	public static final String ID_FIELD_NAME="reg_id";
 	public static final String REGISTRY_NAME_FIELD_NAME="reg_name";
 	public static final String SURNAME_FIELD_NAME="reg_surname";
@@ -64,9 +70,13 @@ public class Registry implements CrudObject<Long> {
 	@Column(name=PHONE_FIELD_NAME)
 	private String phoneNumber;
 	
+	@ForeignCollectionField
+	private ForeignCollection<RegistryGroupPivot> groupPivots;
 	
 	
-	public Registry(){};
+	public Registry(){
+		this.type = PRIVATE;
+	};
 	
 	//costruttre di Registry
 	public Registry(Long id, 
@@ -195,7 +205,13 @@ public class Registry implements CrudObject<Long> {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public ForeignCollection<RegistryGroupPivot> getGroupPivots() {
+		return groupPivots;
+	}
 
+	public void setGroupPivots(ForeignCollection<RegistryGroupPivot> groupPivots) {
+		this.groupPivots = groupPivots;
+	}
 	
 }
 
