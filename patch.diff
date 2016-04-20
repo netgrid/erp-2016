@@ -1,0 +1,106 @@
+From 7e22644fe9058baafd43b7a709845a8d62fd7761 Mon Sep 17 00:00:00 2001
+From: tovo1996 <b2973985@trbvn.com>
+Date: Wed, 20 Apr 2016 10:32:17 +0200
+Subject: [PATCH] creazione del deliveryNoteRoot e del
+ DeliveryNoteRootCrudService
+
+---
+ .../erp/rest/api/DeliveryNoteRootCrudService.java  | 46 ++++++++++++++++++++++
+ .../it/netgrid/erp/model/dto/DeliveryNoteRoot.java | 32 +++++++++++++++
+ 2 files changed, 78 insertions(+)
+ create mode 100644 frontend-gui/src/main/java/it/netgrid/erp/rest/api/DeliveryNoteRootCrudService.java
+ create mode 100644 model/src/main/java/it/netgrid/erp/model/dto/DeliveryNoteRoot.java
+
+diff --git a/frontend-gui/src/main/java/it/netgrid/erp/rest/api/DeliveryNoteRootCrudService.java b/frontend-gui/src/main/java/it/netgrid/erp/rest/api/DeliveryNoteRootCrudService.java
+new file mode 100644
+index 0000000..8dc0972
+--- /dev/null
++++ b/frontend-gui/src/main/java/it/netgrid/erp/rest/api/DeliveryNoteRootCrudService.java
+@@ -0,0 +1,46 @@
++package it.netgrid.erp.rest.api;
++
++import java.sql.SQLException;
++
++import com.google.inject.Inject;
++import com.j256.ormlite.dao.Dao;
++import com.j256.ormlite.support.ConnectionSource;
++
++import it.netgrid.erp.model.DeliveryNote;
++import it.netgrid.erp.model.dto.DeliveryNoteRoot;
++
++public class DeliveryNoteRootCrudService extends TemplateCrudService<DeliveryNoteRoot, Long> {
++
++	public static final String INVALID_ID_DELIVERY_NOTE ="Delivery_Note";
++	
++	private final Dao<DeliveryNote, Long>DeliveryNoteDao;
++
++	@Inject
++	public DeliveryNoteRootCrudService(ConnectionSource connection, Dao<DeliveryNote, Long> DeliveryNoteDao) {
++		super(connection);
++		this.DeliveryNoteDao = DeliveryNoteDao;
++	}
++
++	@Override
++	public int createRaw(DeliveryNoteRoot object) throws SQLException, IllegalArgumentException {
++		int retval = 0;
++		retval += this.DeliveryNoteDao.create(object.getdelivery());
++		return retval;
++	}
++
++	@Override
++	public DeliveryNoteRoot read(Long key) throws SQLException, IllegalArgumentException {
++		return null;
++	}
++
++	@Override
++	public int updateRaw(DeliveryNoteRoot object) throws SQLException, IllegalArgumentException {
++		return 0;
++	}
++
++	@Override
++	public int deleteRaw(DeliveryNoteRoot object) throws SQLException, IllegalArgumentException {
++		return 0;
++	}
++ 
++}
+diff --git a/model/src/main/java/it/netgrid/erp/model/dto/DeliveryNoteRoot.java b/model/src/main/java/it/netgrid/erp/model/dto/DeliveryNoteRoot.java
+new file mode 100644
+index 0000000..05eb43c
+--- /dev/null
++++ b/model/src/main/java/it/netgrid/erp/model/dto/DeliveryNoteRoot.java
+@@ -0,0 +1,32 @@
++package it.netgrid.erp.model.dto;
++
++import javax.persistence.Entity;
++
++import it.netgrid.erp.model.CrudObject;
++import it.netgrid.erp.model.DeliveryNote;
++
++@Entity(name="dtoroot")
++public class DeliveryNoteRoot implements CrudObject<Long>{
++	
++	private DeliveryNote deliveryNote;
++	public DeliveryNoteRoot(){
++		
++	}
++	
++	public void DeliveryRoot(DeliveryNote deliveryNote){
++		this.deliveryNote = deliveryNote;
++	}
++	
++	public DeliveryNote getdelivery(){
++		return deliveryNote;
++	}
++	
++	public void setdelivery(DeliveryNote deliveryNote){
++		this.deliveryNote =deliveryNote;
++	}
++	
++	@Override
++	public Long getId(){
++		return null;
++	}
++}
+-- 
+2.6.1.windows.1
+
