@@ -1,7 +1,6 @@
 package it.netgrid.erp.rest.resources;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,8 +16,8 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 
 import com.google.inject.Inject;
+import com.j256.ormlite.dao.Dao;
 
-import io.codearte.jfairy.Fairy;
 import it.netgrid.erp.model.RegistryGroup;
 import it.netgrid.erp.rest.api.CrudService;
 
@@ -26,29 +25,20 @@ import it.netgrid.erp.rest.api.CrudService;
 public class RegistryResource {
 
 	private final CrudService<RegistryGroup, Long> registryGroupService;
+	private final Dao<RegistryGroup, Long> registryGroupDao;
 	
 	@Inject
-	public RegistryResource(CrudService<RegistryGroup, Long> registryGroupService) {
+	public RegistryResource(CrudService<RegistryGroup, Long> registryGroupService, Dao<RegistryGroup, Long> registryGroupDao) {
 		this.registryGroupService = registryGroupService;
+		this.registryGroupDao = registryGroupDao;
 	}
 	
 	@GET
 	@Path("groups")
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public List<RegistryGroup> getRegistryGroups(@Context HttpHeaders headers) {
-		List<RegistryGroup> retval = new ArrayList<>();
-		Fairy fairy = Fairy.create();
-		
-		for(long i=0; i<fairy.baseProducer().randomBetween(3, 10); i++) {
-			RegistryGroup group = new RegistryGroup();
-			group.setId(i+1);
-			group.setHidden(false);
-			group.setName(fairy.textProducer().word());
-			retval.add(group);
-		}
-		
-		return retval;
+	public List<RegistryGroup> getRegistryGroups(@Context HttpHeaders headers) throws SQLException {
+		return this.registryGroupDao.queryForAll();
 	}
 	
 	@PUT
