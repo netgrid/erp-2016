@@ -69,6 +69,7 @@
 							},
 							success:function(text, data, XmlHttpRequest){
 								var list = JSON.parse(text);
+								$$("maindata").clearAll();
 								$$("maindata").parse(list.registryGroup);
 							}
 						});
